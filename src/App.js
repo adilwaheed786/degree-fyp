@@ -9,9 +9,6 @@ export const App = () => {
     <div>
      <Header/>
 <Certificate/>
-  
-
-
 <Foooter/>
 
     </div>
