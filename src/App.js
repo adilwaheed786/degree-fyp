@@ -6,6 +6,7 @@ import { Foooter } from './Component/Foooter'
 import { Certificate } from './Component/Certificate'
 import { NoPage } from './Component/NoPage'
 import { AdminLogin } from './Component/Admin/Login/AdminLogin'
+import { Verify } from './Component/Admin/Authentication/Verify'
 export const App = () => {
   return (
     <div>
@@ -14,6 +15,7 @@ export const App = () => {
           <Route path="/" element={<Header />}>
             <Route index element={<Certificate />} />
             <Route path="/admin" element={<AdminLogin />} />
+            <Route path="/verify-auth" element={<Verify />} />
             <Route path="*" element={<NoPage />} />
           </Route>
         </Routes>

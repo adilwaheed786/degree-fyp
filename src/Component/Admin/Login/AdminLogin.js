@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
-
+import { Verify } from '../Authentication/Verify'
 
 import './Adminlogin.css';
 
 export const AdminLogin = () => {
-  const [username, setName] = useState('');
-  const [password, setRoom] = useState('');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
   return (
     <div className="OuterContainer">
@@ -15,12 +15,12 @@ export const AdminLogin = () => {
           <h1 className="heading">LOGIN</h1>
         </b>
         <div>
-          <input placeholder="UserName/Email" className="form-control UserInput shadow" type="text" onChange={(event) => setName(event.target.value)} />
+          <input placeholder="UserName/Email" className="form-control UserInput shadow" type="text" onChange={(event) => setUsername(event.target.value)} />
         </div>
         <div>
-          <input placeholder="Password" className="form-control UserInput mt-20 shadow" type="text" onChange={(event) => setRoom(event.target.value)} />
+          <input placeholder="Password" className="form-control UserInput mt-20 shadow" type="text" onChange={(event) => setPassword(event.target.value)} />
         </div>
-        <Link onClick={e => (!username || !password) ? e.preventDefault() : null} to={"/"}>
+        <Link onClick={e => (!username || !password) ? e.preventDefault() : null} to={"/verify-auth"}>
           <button className={'button mt-20'} type="submit">Log In</button>
         </Link>
       </div>
