@@ -1,6 +1,6 @@
 import React from 'react'
 import logo from '../images/logo.png'
-
+import { Outlet, Link } from "react-router-dom";
 export const Header = () => {
   return (
     <div>
@@ -16,26 +16,21 @@ export const Header = () => {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <a className="nav-link " aria-current="page" href="/">HOME</a>
+                <Link className="nav-link " aria-current="page"  to="/">Home</Link>
               </li>
-             
-
               <li className="nav-item">
-                <a className="nav-link" href="/">VERIFY</a>
+                <Link  className="nav-link" to="/verify">VERIFY</Link>
               </li>
-
-
             </ul>
-
             <ul className="navbar-nav d-flex flex-row me-1">
               <li className="nav-item">
-                <a className="nav-link " aria-current="page" href="/" >ADMIN PANNEL</a>
+                <Link  className="nav-link" to="/admin">ADMIN PANNEL</Link>
               </li>
             </ul>
           </div>
-
         </div>
       </nav>
+      <Outlet />
       {/* ---------Navbar code end */}
     </div>
   )
