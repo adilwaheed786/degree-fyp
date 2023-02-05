@@ -3,7 +3,7 @@ import certificate from '../images/certificate.png'
 import s4 from '../images/s4.png'
 import logo from '../images/logo.png'
 import QR from '../images/QR.png'
-import { Button } from './Button'
+
 export const Certificate = () => {
   return (
     <div>
@@ -66,9 +66,14 @@ export const Certificate = () => {
           </div>
         </div>
 
-        <Button name1="Update"
-        name2="Upload"/>
-   
+        {/* --------buttons code start */}
+        <div className="buttons">
+                          
+                          
+                          <button type="button" class="btn btn-outline-primary">Update</button>
+                          <button type="button" class="btn btn-outline-primary">Upload</button>
+                          </div> 
+                           {/* --------buttons code end */}
    
    
       </div>
