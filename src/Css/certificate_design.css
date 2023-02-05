@@ -1,144 +1,147 @@
-*
-{
-    margin: 0px;
-    padding: 0px;
-    box-sizing: border-box;
-    font-family:" Rammetto";
-   
-}
-body{
-    background: #FFFFFF;
-    margin: auto;
-    width: 100%;
-    height: auto;
-    
-
-
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: " Rammetto";
 
 }
+
+body {
+  background: #FFFFFF;
+  margin: auto;
+  width: 100%;
+  height: auto;
+
+
+
+
+}
+
 /* NavbAR CODE START */
 
-.navbar
-{
-  background-color:#020151; 
+.navbar {
+  background-color: #020151;
 
 }
 
- .navbar-toggler
-{
+.navbar-toggler {
   background-color: white;
   color: white;
 }
-.navbar-light .navbar-nav .nav-link 
-{
-  color:white;
-  padding-left:10px
+
+.navbar-light .navbar-nav .nav-link {
+  color: white;
+  padding-left: 10px
 }
 
-.nav-item a
-{
-    font-size: 12px;
-    font-size: 36px;
-font-weight: 600;
+.nav-item a {
+  font-size: 12px;
+  font-size: 36px;
+  font-weight: 600;
 
-display: inline-block;
-padding: 5px;
+  display: inline-block;
+  padding: 8px;
 
-width: 140px;
-border-radius: 30px;
+
+  border-radius: 30px;
 }
-a{
+
+a {
   text-decoration: none;
 }
-.navbar-nav > li >a:hover
-{
- background-color: white;
- border-radius: 30px;
- color: black;
- 
- 
+
+.navbar-nav>li>a:hover {
+  background-color: white;
+  border-radius: 30px;
+  color: black;
+
+
 }
 
-.navbar-nav > li >a{
-    margin-left:10px;
-    padding-left:5px ;
-   /* padding: 10px; */
-    margin-right:10px;
-    font-size: 12px;
-    color:white;
-    /* background-color:#001273; */
-    letter-spacing: 1.71429px;
-  }
-  /* NavbAR CODE End */
+.navbar-nav>li>a {
+  margin-left: 10px;
+  padding-left: 5px;
+  /* padding: 10px; */
+  margin-right: 10px;
+  font-size: 12px;
+  color: white;
+  /* background-color:#001273; */
+  letter-spacing: 1.71429px;
+}
+
+/* NavbAR CODE End */
 /* -------heading div start */
-  
-  .preview
-  {
+
+.preview {
   text-align: center;
   margin: 30px;
   color: #42535E;
-margin-top: 50px;
-font-weight:bolder;
-box-shadow: #001273;
-  
-  }
+  margin-top: 50px;
+  font-weight: bolder;
+  box-shadow: #001273;
+
+}
+
 /* -------heading div end */
 /* ----------Certificate code start */
-.certificate
-{
-  
-text-align: center;
-margin-bottom: 10px;
+.certificate {
+
+  text-align: center;
+  margin-bottom: 10px;
 
 
 }
-.certimg
-{
-position: relative;
+
+.certimg {
+  position: relative;
 
 }
-.Certcontent
-{
+
+.Certcontent {
   position: absolute;
- 
+
   top: 0px;
-right: 50px;
-left: 50px;
+  right: 50px;
+  left: 50px;
 
 }
-.Certcontent h4{
+
+.Certcontent h4 {
   font-weight: bolder;
-  font-size:2vw;
- 
+  font-size: 2vw;
+
 }
-.Certcontent p{
+
+.Certcontent p {
   font-weight: bolder;
-  font-size:1vw;
-   margin: 1%;
- 
- 
+  font-size: 1vw;
+  margin: 1%;
+
+
 }
-.Certcontent h3{
+
+.Certcontent h3 {
   font-weight: bolder;
-  font-size:1.5vw;
+  font-size: 1.5vw;
   font-style: italic;
- 
+
 }
 
-.sealdiv p,img
-{
+.sealdiv p,
+img {
   display: inline;
-  
+
 }
+
 /* ----------Certificate code end */
 
 /* ---------Button code start */
-.buttons
-{
+.buttons {
   margin: 20px;
 }
+
 .btn {
-  margin:20px;
+  margin: 20px;
   background-color: var(--background-color);
   color: rgb(255, 255, 255);
   padding: .5em 1em;
@@ -146,36 +149,37 @@ left: 50px;
   outline: none;
   position: relative;
   cursor: pointer;
-border-radius: 10px;
-  --background-color:rgb(17, 17, 70);
+  border-radius: 10px;
+  --background-color: rgb(17, 17, 70);
   --border-size: 2px;
-  --accent-color:rgb(17, 17, 17);
+  --accent-color: rgb(17, 17, 17);
   overflow: hidden;
   height: 40px;
- 
+
 }
 
 
-.btn:hover{
+.btn:hover {
   color: white;
   background-color: black;
 }
+
 /* ---------Button code end */
 /* -------fOOTER CODE START */
-.footer 
-{
+.footer {
   padding: 5px;
-  
+
   background-color: #020151;
   color: white;
   text-align: center;
 
 }
-.footer p
-{
+
+.footer p {
   font-weight: 1000;
- margin-top: 10px;
+  margin-top: 10px;
 }
+
 /* -------Footer code END */
 
 
@@ -193,5 +197,3 @@ img
 }
 
 } */
-
-
