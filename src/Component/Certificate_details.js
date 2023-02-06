@@ -39,7 +39,7 @@ export const Certificate_details = () => {
                 <div className='text' >Time Stamp:434563:242:2425</div>
                 <div className='text3' >Public URL:837874udfndnfdff</div>
                 <div className='text3' >Public Key:ereru848455555gfgggggggg</div>
-                <div className='text3' >BlockChain BlockNumber:wiuei993i2jmdffggfg56767</div>
+                <div className='text3' >BlockChain-BlockNumber:wiuei993i2jmdffggfg56767</div>
                
             </div>
         </div>

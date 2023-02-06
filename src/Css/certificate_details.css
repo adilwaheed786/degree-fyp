@@ -79,7 +79,7 @@ body{
 ---------MEDIA QUERRY */
 h3{
   
-    margin-left: 100px;
+    margin-left:6%;
     
     color: #343434;
 	font-weight: normal;
@@ -108,9 +108,29 @@ h3,h2,p
     }
 }
 
-@media  (min-width:200px) and (max-width: 923px) 
+@media  (min-width:336px) and (max-width: 923px) 
 {
     .text,.text1,.text3{
-        width: 80%;
+        width: 110%;
+        padding:1px;
+        margin: 10px;
+    }
+    .studentinfo{
+        width:90%;
+        margin: 10px;
+    }
+}
+@media  (min-width:200px) and (max-width: 336px) 
+{
+    .text,.text1,.text3{
+        width: 100%;
+        padding:1px;
+        margin: 10px;
+       font-size: 11px;
+    }
+    .studentinfo{
+        width:90%;
+        margin: 10px;
+        
     }
 }
