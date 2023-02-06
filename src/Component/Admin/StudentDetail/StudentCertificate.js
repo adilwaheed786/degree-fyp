@@ -74,7 +74,7 @@ export const StudentCertificate = () => {
                     </div>
                     <div className="row ">
                         <div className='col d-flex justify-content-center'>
-                            <Link onClick={e => (!firstname || !lastname||!fathername||!enrollment||!registration||!program||!batch||!dateofgraduation||!cgpa) ? e.preventDefault() : null} to={"/confirm"}>
+                            <Link onClick={e => (!firstname || !lastname||!fathername||!enrollment||!registration||!program||!batch||!dateofgraduation||!cgpa||!other) ? e.preventDefault() : null} to={"/confirm"}>
                                 <button className={'button mt-20 mb-4 '} type="submit">Preview And Add</button>
                             </Link>
                         </div>
