@@ -17,7 +17,7 @@ export const App = () => {
           <Route path="/" element={<Header />}>
             <Route index element={<Certificate />} />
             <Route path="/admin" element={<AdminLogin />} />
-            <Route path="/verify-auth" element={<Verify />} />confirm
+            <Route path="/verify-auth" element={<Verify />} />
             <Route path="/student-certificate" element={<StudentCertificate />} />
             <Route path="/confirm" element={<Certificate />} />
             <Route path="*" element={<NoPage />} />

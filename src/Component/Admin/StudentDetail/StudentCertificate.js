@@ -20,7 +20,7 @@ export const StudentCertificate = () => {
                     <h1 className="heading">Student Certificate Details</h1>
                 </b>
             </div>
-            <div className='container  m-5'>
+            <div className='container'>
                 <form>
                     <div class="row">
                         <div className='d-flex justify-content-center'>
@@ -75,7 +75,7 @@ export const StudentCertificate = () => {
                     <div className="row ">
                         <div className='col d-flex justify-content-center'>
                             <Link onClick={e => (!firstname || !lastname||!fathername||!enrollment||!registration||!program||!batch||!dateofgraduation||!cgpa) ? e.preventDefault() : null} to={"/confirm"}>
-                                <button className={'button mt-20'} type="submit">Preview And Add</button>
+                                <button className={'button mt-20 mb-4 '} type="submit">Preview And Add</button>
                             </Link>
                         </div>
                     </div>
