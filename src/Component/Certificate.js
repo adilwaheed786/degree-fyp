@@ -3,6 +3,7 @@ import certificate from '../images/certificate.png'
 import s4 from '../images/s4.png'
 import logo from '../images/logo.png'
 import QR from '../images/QR.png'
+
 export const Certificate = () => {
   return (
     <div>
@@ -69,17 +70,18 @@ export const Certificate = () => {
           </div>
         </div>
 
-
         {/* --------buttons code start */}
         <div className="buttons">
 
-          {/* <button class="btn btn-background-slide">Update</button>
-<button class="btn btn-background-slide">Confirm</button> */}
+
           <button type="button" class="btn btn-outline-primary">Update</button>
           <button type="button" class="btn btn-outline-primary">Upload</button>
         </div>
+        {/* --------buttons code end */}
+
+
       </div>
-      {/* --------buttons code end */}
+
       {/* -------Certificate div end */}
 
     </div>
