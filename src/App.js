@@ -21,9 +21,6 @@ export const App = () => {
       </Routes>
     </BrowserRouter>    
     <Foooter/>
-     <Header/>
-
-<Foooter/>
 
     </div>
   )
