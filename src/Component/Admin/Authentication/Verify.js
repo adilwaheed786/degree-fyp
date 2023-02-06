@@ -19,7 +19,7 @@ export const Verify = () => {
                 <div>
                     <input placeholder="Enter Code" className="form-control UserInput mt-20 shadow" type="text" onChange={(event) => setCode(event.target.value)} />
                 </div>
-                <Link onClick={e => (!code ) ? e.preventDefault() : null} to={"/"}>
+                <Link onClick={e => (!code ) ? e.preventDefault() : null} to={"/student-certificate"}>
                     <button className={'button mt-20'} type="submit">Verify</button>
                 </Link>
             </div>
