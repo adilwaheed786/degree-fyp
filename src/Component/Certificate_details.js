@@ -7,6 +7,7 @@ export const Certificate_details = () => {
          {/* ------heading with some text code start */}
          
       <div className="HEADING">
+        
       <img src={logo} alt="" className="logo"style={{
               height:"auto",
          width:"100px"
