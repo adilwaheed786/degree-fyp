@@ -86,8 +86,8 @@ h3{
 	font-family: 'Ultra', sans-serif;   
 	font-size: 30px;
 	line-height: 42px;
-	text-transform: uppercase;
-	text-shadow: 0 2px white, 0 3px #777;
+    font-weight: bolder;
+	
 }
 
 @media  (min-width:200px) and (max-width: 1020px) 
@@ -112,25 +112,102 @@ h3,h2,p
 {
     .text,.text1,.text3{
         width: 110%;
-        padding:1px;
+        padding:10px;
         margin: 10px;
     }
     .studentinfo{
         width:90%;
-        margin: 10px;
+        margin: auto;
+        margin-bottom: 10px;
     }
 }
-@media  (min-width:200px) and (max-width: 336px) 
+@media  (min-width:1151px) and (max-width: 1277px) 
+{
+    .text,.text1,.text3{
+        width: 30%;
+        padding:10px;
+        margin: 10px;
+    }
+    
+}
+@media  (min-width:923px) and (max-width: 1151px) 
+{
+    .text,.text1,.text3{
+        width: 40%;
+       
+    }
+    
+}
+@media  (min-width:951px) and (max-width: 923px) 
+{
+    .text,.text1,.text3{
+        width: 45%;
+       
+    }
+    
+}
+@media  (min-width:847px) and (max-width: 951px) 
+{
+    .text,.text1,.text3{
+        width: 45%;
+        
+    }
+    
+}
+@media  (min-width:500px) and (max-width: 847px) 
+{
+    .text,.text1,.text3{
+        width: 80%;
+        
+    }
+    
+}
+
+
+@media  (min-width:350px) and (max-width: 500px) 
 {
     .text,.text1,.text3{
         width: 100%;
-        padding:1px;
+        padding:10px;
         margin: 10px;
-       font-size: 11px;
+      
     }
     .studentinfo{
         width:90%;
-        margin: 10px;
+        margin: auto;
+        margin-bottom: 10px;
         
     }
+}
+@media  (min-width:322px) and (max-width: 350px) 
+{
+    .text,.text1,.text3{
+        width: 100%;
+        padding:8px;
+        margin: 10px;
+       font-size: 13px;
+    }
+    .studentinfo{
+        width:90%;
+        margin: auto;
+        margin-bottom: 10px;
+        
+    }
+
+}
+@media  (min-width:280px) and (max-width: 322px) 
+{
+    .text,.text1,.text3{
+        width: 100%;
+        padding:6px;
+        margin: 10px;
+       font-size: 12px;
+    }
+    .studentinfo{
+        width:90%;
+        margin: auto;
+        
+    }
+    
+
 }

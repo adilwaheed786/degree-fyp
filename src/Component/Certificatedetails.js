@@ -11,8 +11,8 @@ export const Certificatedetails = () => {
               height:"auto",
          width:"100px"
             }} />
-        <h2 style={{ fontWeigt: "bolder",fontSize:"40px" }}><b> BAHRIA UNIVERISTY</b>
-        </h2>
+        <h3 style={{ fontSize:"35px" }}><b> BAHRIA UNIVERISTY</b>
+        </h3>
     
         <p style={{ fontWeigt: "bolder" ,fontSize:"30px"}}><b> <u>DEGREE VERIFICATION INFORMATION</u></b>
         </p>
