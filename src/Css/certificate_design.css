@@ -106,26 +106,24 @@ a {
 
 }
 
-.Certcontent h4 {
+.Certcontent h5 {
+  font-weight: bold;
+  font-size: 1.5vw;
+
+}
+h4{
   font-weight: bolder;
   font-size: 2vw;
 
 }
-
 .Certcontent p {
-  font-weight: bolder;
+
   font-size: 1vw;
   margin: 1%;
-
-
-}
-
-.Certcontent h3 {
-  font-weight: bolder;
-  font-size: 1.5vw;
-  font-style: italic;
+font-weight: bold;
 
 }
+
 
 .sealdiv p,
 img {
@@ -185,15 +183,135 @@ img {
 
 
 
-/* @media  (min-width:200px) and (max-width: 364px) 
+@media  (min-width:600px) and (max-width: 900px) 
 {
-img
+  .certimg 
+  {
+    width: 90%;
+    margin: auto;
+  }
+  .Certcontent  p
 {
   
-  width: "80%";
- height: auto;
-   max-height: auto;
+  font-size: 1.2vw;
   
 }
 
-} */
+}
+@media  (min-width:537px) and (max-width: 600px) 
+{
+ 
+
+  .Certcontent  p
+{
+  
+  font-size: 1.4vw;
+  
+}
+
+}
+@media  (min-width:457px) and (max-width: 537px) 
+{
+ 
+
+  .Certcontent  p
+{
+  
+  font-size:7px;
+  
+}
+.Certcontent
+{
+  left:30px
+}
+
+}
+@media  (min-width:385px) and (max-width: 457px) 
+{
+ 
+
+  .Certcontent  p
+{
+  
+  font-size:6px;
+  
+}
+.Certcontent
+{
+  left:30px
+}
+
+}
+@media  (min-width:300px) and (max-width: 385px) 
+{
+
+  .Certcontent  p
+{
+  
+  font-size:6px;
+
+}
+h5,h4
+{
+  font-size: 7px;
+}
+.Certcontent
+{
+  left:30px
+}
+
+}
+@media  (min-width:370px) and (max-width: 387px) 
+{
+/*  */
+
+.certimg .certimg
+{
+  width: 90% !important;
+  
+ margin: auto;
+}
+  .Certcontent  p
+{
+  
+  font-size:6px;
+  
+}
+h5
+{
+  font-size: 8px !important;
+  
+}
+h4
+{
+  font-size:  7px !important;
+  
+}
+
+}
+@media  (min-width:280px) and (max-width: 370px) 
+{
+/*  */
+.certimg .certimg
+{
+  width: 95% !important;
+ margin: auto;
+}
+  .Certcontent  p
+{
+  
+  font-size:5px;
+}
+h5
+{
+  font-size: 7px !important;
+  
+
+}
+h4
+{
+  font-size:  7px !important;
+  margin: 2px;
+}
+
+}
