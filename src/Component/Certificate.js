@@ -3,6 +3,7 @@ import certificate from '../images/certificate.png'
 import s4 from '../images/s4.png'
 import logo from '../images/logo.png'
 import QR from '../images/QR.png'
+
 export const Certificate = () => {
   return (
     <div>

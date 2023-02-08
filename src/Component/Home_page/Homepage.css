@@ -1,0 +1,137 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: " Rammetto";
+
+}
+
+body {
+    background: #FFFFFF;
+    margin: auto;
+    width: 100%;
+    height: auto;
+}
+
+
+
+
+.Banner img{
+    background-color: #101E2E;
+    width: 100%;
+    display: flex;
+    height: auto;
+    --bs-gutter-x: 0rem !important;
+    flex-direction: row;
+}
+
+
+.body-row{
+    --bs-gutter-x: 0rem !important;
+    /* background-image: url('Group-103\ \(1\).jpg'); */
+
+}
+.column4 img{
+    float: right;
+}
+.col-md-6 img{
+    width:50%;
+    height:20%;
+}
+
+.small_banner{
+    background-color: #101E2E;
+    margin-top:10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    /* height: 40vh; */
+    border-radius: 10px;
+    /* width: 80%; */
+
+}
+ .small_banner h4{
+    color:white;
+    padding-left: 55px;
+    padding-right: 5px;
+    padding-top: 13px;
+    text-transform: uppercase;
+ }
+ .getStarted_btn{
+    background-color: white;
+    color: #BB3C3C;
+    border:2px solid #BB3C3C;
+    text-transform: uppercase;
+    width: 50%;
+    font-size: 18px;
+    display: flex;
+    flex-direction: row;
+    padding: 2px;
+    border-radius: 8px;
+    font-weight: bold;
+    background-image: url(Arrow.png);
+    background-repeat: no-repeat;
+    background-position: right 18px center;
+    background-size: 28px;
+ }
+ .getStarted_btn img{
+    width: auto;
+    height: 70%;
+ }
+ .upload{
+  margin-top: 52px;
+ }
+ .upload h2{
+    text-transform: uppercase;
+    color: #020151;
+    border-bottom: 5px solid #020151;
+    text-align: center;
+    box-shadow:  4px  #000000 25%;
+ }
+ .upload button{
+    background-color: #020151;
+    color: white;
+    border:2px solid #020151;
+    text-transform: capitalize;
+    width: 50%;
+    font-size: 18px;
+    padding: 2px;
+    border-radius: 8px;
+    font-weight: bold;
+ }
+ .column2{
+    display: flex;
+    flex-direction: row;
+    padding-right: 4%;
+    padding-bottom: 2%;
+    
+ }
+
+ /* Media Query */
+ @media only screen and (max-width:786px){
+    .column1 img{
+        display:none
+      
+    }
+    .column4 img{
+        display:none
+
+    }
+    .column3{
+        padding-bottom: 2%;
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+    .column2{
+    display: flex;
+    align-content: space-between;
+    justify-content: center;
+    padding-right: 0px;
+    }
+    .getStarted_btn{
+        background-position: right 38% center;
+    }
+ }
+
+ 

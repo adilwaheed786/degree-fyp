@@ -5,6 +5,8 @@ import { Header } from './Component/Header'
 import { Foooter } from './Component/Foooter'
 import { Certificate } from './Component/Certificate'
 import {NoPage} from './Component/NoPage'
+import Homepage from './Component/Home_page/Homepage'
+
 
 export const App = () => {
   return (
@@ -12,7 +14,7 @@ export const App = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Header />}>
-          <Route index element={<Certificate />} />
+          <Route index element={<Homepage />} />
           <Route path="*" element={<NoPage />} />
         </Route>
       </Routes>
