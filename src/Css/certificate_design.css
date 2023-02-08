@@ -100,7 +100,7 @@ a {
 .Certcontent {
   position: absolute;
 
-  top: 0px;
+  top: 10%;
   right: 50px;
   left: 50px;
 
@@ -198,6 +198,7 @@ img {
 }
 
 }
+
 @media  (min-width:537px) and (max-width: 600px) 
 {
  
@@ -226,15 +227,27 @@ img {
 }
 
 }
-@media  (min-width:385px) and (max-width: 457px) 
+@media  (min-width:385px) and (max-width: 473px) 
 {
  
-
+  .Certcontent
+  {
+    top:15%;
+  }
+  .certimg 
+  {
+    width: 98% !important;
+    margin: auto;
+  }
   .Certcontent  p
 {
   
-  font-size:6px;
+  font-size:7.5px !important;
   
+}
+h4,h5
+{
+  font-size:9px !important;
 }
 .Certcontent
 {
@@ -263,14 +276,14 @@ h5,h4
 }
 @media  (min-width:370px) and (max-width: 387px) 
 {
-/*  */
 
 .certimg .certimg
 {
-  width: 90% !important;
+  width: 96% !important;
   
  margin: auto;
 }
+
   .Certcontent  p
 {
   
@@ -279,7 +292,7 @@ h5,h4
 }
 h5
 {
-  font-size: 8px !important;
+  font-size: 7px !important;
   
 }
 h4
@@ -289,29 +302,64 @@ h4
 }
 
 }
-@media  (min-width:280px) and (max-width: 370px) 
+@media  (min-width:315px) and (max-width: 370px) 
 {
 /*  */
+.Certcontent
+{
+  top:8% !important;
+}
 .certimg .certimg
 {
-  width: 95% !important;
+  width: 94% !important;
  margin: auto;
 }
   .Certcontent  p
 {
   
-  font-size:5px;
+  font-size:6.5px;
 }
 h5
 {
-  font-size: 7px !important;
+  font-size: 7.5px !important;
   
 
 }
 h4
 {
-  font-size:  7px !important;
-  margin: 2px;
+  font-size:  7.5px !important;
+ 
+}
+
+}
+
+@media  (min-width:280px) and (max-width: 315px) 
+{
+/*  */
+.Certcontent
+{
+  top:2% !important;
+}
+.certimg .certimg
+{
+  width: 97% !important;
+ margin: auto;
+}
+  .Certcontent  p
+{
+  
+  font-size:5.5px;
+}
+h5
+{
+  font-size: 6.5px !important;
+  
+
+}
+h4
+{
+  font-size:  6.5px !important;
+ 
 }
 
 }

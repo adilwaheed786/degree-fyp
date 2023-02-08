@@ -17,7 +17,7 @@ export const Certificate = () => {
 
 
       {/* ------Certificate code start */}
-      <div className='certificate'>
+      <div className='certificate' >
 
         <div className='certimg'>
           <img src={certificate} alt="" class="certimg" style={{
