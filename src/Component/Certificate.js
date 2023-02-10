@@ -3,7 +3,7 @@ import certificate from '../images/certificate.png'
 import s4 from '../images/s4.png'
 import logo from '../images/logo.png'
 import QR from '../images/QR.png'
-
+import "../Css/certificate_design.css"
 export const Certificate = () => {
   return (
     <div>
@@ -17,10 +17,10 @@ export const Certificate = () => {
 
 
       {/* ------Certificate code start */}
-      <div className='certificate'>
+      <div className='certificate' >
 
         <div className='certimg'>
-          <img src={certificate} alt="" style={{
+          <img src={certificate} alt="" class="certimg" style={{
             width: "70%",
             maxHeight: "auto",
             height: "auto",
@@ -35,9 +35,9 @@ export const Certificate = () => {
               maxheight: "100px",
               width: "10%",
             }} />
-            <p>BAHRIA AND FACULTY OF UNIVERSITY HAVE GRANTED TO </p>
-            <h3>SUMAYYA KHALID</h3>
-            <h3>BACHLORS OF SOFTWARE ENGINEERING  </h3>
+            <p class="bahria">BAHRIA AND FACULTY OF UNIVERSITY HAVE GRANTED TO </p>
+            <h5>SUMAYYA KHALID</h5>
+            <h5>BACHLORS OF SOFTWARE ENGINEERING  </h5>
             <p>CGPA:3.44</p>
 
             <p>WITH ALL THE RIGHTS AND PRIVILIGES THERES TO</p>
