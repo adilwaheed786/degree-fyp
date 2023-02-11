@@ -16,15 +16,41 @@ body {
 
 
 
-.Banner img{
+/* .Banner img{
     background-color: #101E2E;
     width: 100%;
     display: flex;
     height: auto;
     --bs-gutter-x: 0rem !important;
     flex-direction: row;
+} */
+.BannerColumn1{
+    padding: 2%;
 }
+.Banner{
+    background-color: #101E2E;
+    /* height: 45vh; */
 
+
+ }
+ .Banner-heading{
+    display: flex;
+    color: #FFFFFF;
+    /* text-transform: uppercase; */
+    flex-direction: column;
+
+ }
+ .Banner-heading h2{
+    text-transform: uppercase;
+    font-weight: bold;
+ }
+ .Banner-heading p{
+    font-size: 20px;
+ }
+ .BannerColumn2{
+background-image: url('../../images/Rectangle\ 27.png');
+
+ }
 
 .body-row{
     --bs-gutter-x: 0rem !important;
@@ -70,14 +96,14 @@ body {
     padding: 2px;
     border-radius: 8px;
     font-weight: bold;
-    background-image: url(Arrow.png);
+    /* background-image: url(Arrow.png); */
     background-repeat: no-repeat;
-    background-position: right 18px center;
-    background-size: 28px;
+    /* background-position: right 18px center; */
+    /* background-size: 28px; */
  }
  .getStarted_btn img{
-    width: auto;
-    height: 70%;
+    width: 27px;
+    /* height: 70%; */
  }
  .upload{
   margin-top: 52px;
@@ -88,6 +114,11 @@ body {
     border-bottom: 5px solid #020151;
     text-align: center;
     box-shadow:  4px  #000000 25%;
+ }
+ .upload_btn{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
  }
  .upload button{
     background-color: #020151;
@@ -107,6 +138,7 @@ body {
     padding-bottom: 2%;
     
  }
+ 
 
  /* Media Query */
  @media only screen and (max-width:786px){
@@ -132,6 +164,20 @@ body {
     .getStarted_btn{
         background-position: right 38% center;
     }
+    .data_image img{
+        float: right;
+         width: 294px;
+       /* padding-top: 13%; */ 
+     }
+    
  }
+ /* styles for tablets and small desktops */
 
+ @media only screen and (max-width: 1023px) and (min-width:576px){
+    .data_image img{
+        float: right;
+        width: 337px;
+       padding-top: 13%;
+     }
+ } 
  

@@ -1,7 +1,7 @@
 import React from 'react'
-import pic1 from './Jhaal1.png';
-import pic2 from './Jhaal2.png';
-import arrow from './Arrow.png'
+import pic1 from '../../images/Jhaal1.png';
+import pic2 from '../../images/Jhaal2.png';
+import arrow from '../../images/Arrow.png';
 
 const Body = () => {
     return (
@@ -16,7 +16,7 @@ const Body = () => {
                     <button className='getStarted_btn'>
                         Get Started
                         <div className='arrow-image'>
-                        {/* <img src={arrow}></img> */}
+                        <img src={arrow}></img>
                         </div>
                     </button>
                 </div>
@@ -25,7 +25,9 @@ const Body = () => {
             <div className='col-md-4 column3'>
                 <div className='upload'>
                     <h2>Upload Document</h2>
+                    <div className='upload_btn'>
                     <button>Upload Degree file</button>
+                    </div>
                 </div>
             </div>
             <div className='col-md-2 column4'>

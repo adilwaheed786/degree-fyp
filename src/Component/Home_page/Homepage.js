@@ -1,17 +1,18 @@
 import React from 'react'
 import './Homepage.css';
-import Banner from './Banner.png'
+//import Banner from '../../images/Banner.png'
 import Body from './Body'
-
+import Banner from './Banner';
 
 
 
 const Homepage = () => {
   return (
     <>
-    <div className='Banner'>
-      <img src={Banner} alt=""></img>
+    <div className='Bannerr'>
+    <Banner></Banner>
     </div>
+     
     
       <Body></Body>
     
