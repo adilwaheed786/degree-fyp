@@ -1,0 +1,202 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: " Rammetto";
+
+}
+
+body {
+  background: #FFFFFF;
+  margin: auto;
+  width: 100%;
+  height: auto;
+}
+
+.verify-heading {
+  margin-top: 13%;
+  border-top: 3px solid #A6A1A1;
+  display: inline-block;
+}
+
+.verify-heading h3 {
+  color: #A6A1A1;
+}
+
+.line-container {
+  display: flex;
+  /* align-items: center; */
+}
+
+.line-vertical {
+  width: 1.5px;
+  height: 259px;
+  background-color: #A6A1A1;
+}
+
+.line-horizontal-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* margin-left: 50px; */
+}
+
+.line-horizontal {
+  width: 100px;
+  height: 3px;
+  background-color: #A6A1A1;
+  margin: 50px 0;
+  /* display: flex; */
+  /* flex-direction: row; */
+}
+
+.heading-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding-left: 2%;
+}
+
+.heading-container {
+  color: #A6A1A1;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+
+.active-btn {
+  color: #020151 !important;
+}
+
+.tab-header {
+  text-transform: uppercase;
+  border-bottom: 3px solid #020151;
+  margin-top: 2%;
+}
+.tab-header h2{
+  color: #020151;
+  font-weight: bold;
+}
+
+table,
+th,
+td {
+  border: 3px solid #A6A1A1;
+}
+
+.table-Id {
+  margin-top: 2%;
+  width: 80%;
+  height: 100%;
+}
+
+.notRobot {
+  display: flex;
+  align-items: center;
+}
+
+.submit-btn {
+  background-color: #020151;
+  color: white;
+  border: 2px solid #020151;
+  text-transform: capitalize;
+  width: 50%;
+  font-size: 18px;
+  padding: 2px;
+  border-radius: 8px;
+  font-weight: bold;
+}
+.QR-image img{
+  width: 100%;
+}
+.turnOnCamera{
+  display: flex;
+  justify-content: center;
+    margin-top: 5px;
+}
+
+
+
+.errorMessage {
+  color: red;
+}
+
+.Id-input {
+  border: 1px solid black;
+  background-color: #A6A1A1;
+  border-radius: 12px;
+  margin: 2%;
+}
+
+.notRobot {
+  margin-left: 2%
+}
+
+.notRobot img {
+  width: 50%
+}
+
+.notRobot h6 {
+  margin-top: 2%;
+}
+
+.id-label {
+  margin: 2%;
+}
+.midComponent{
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+.webCam{
+  width: 100%;
+  /* height: 480px; */
+  border: 1px solid gray;
+}
+.displaycamera-btn{
+  display: none;
+}
+.offcamera-btn{
+  display: none;
+}
+
+/* Media Query For Verify Page */
+@media only screen and (max-width:575px) {
+  .header{
+    margin-bottom: 5%;
+  }
+  .verify-heading {
+    margin-top: 3px;
+  }
+
+  .line-container {
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+  }
+  
+  .line-vertical {
+    width: 98%;
+    height: 3px;
+    /* background-color: black; */
+    margin: 10px 0;
+    margin-bottom: 0px;
+  }
+  .line-horizontal-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  
+  .line-horizontal {
+    width: 1px;
+    height: 20px;
+    /* background-color: black; */
+    margin: 0 10px; 
+  }
+  .heading-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 6%;
+  }
+}
