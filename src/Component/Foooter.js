@@ -6,7 +6,7 @@ export const Foooter = () => {
 <div className="footer">
 
 <p>DEGREE VERIFICATION SYSTEM 
-  <i class="fa fa-certificate" style={{margin:"10px"}}></i>
+<i class="fa fa-copyright" style={{margin:"10px",fontWeight:"bolder"}}></i>
 </p>
 
 </div>

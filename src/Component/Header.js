@@ -16,15 +16,15 @@ export const Header = () => {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <Link className="nav-link " aria-current="page"  to="/">Home</Link>
+                <Link className="nav-link " aria-current="page"  to="/" class="white-text">HOME</Link>
               </li>
               <li className="nav-item">
-                <Link  className="nav-link" to="/verify">VERIFY</Link>
+                <Link  className="nav-link" to="/verify" class="white-text">VERIFY</Link>
               </li>
             </ul>
             <ul className="navbar-nav d-flex flex-row me-1">
               <li className="nav-item">
-                <Link  className="nav-link" to="/admin">ADMIN PANNEL</Link>
+                <Link  className="nav-link" to="/admin" class="white-text">ADMIN PANNEL</Link>
               </li>
             </ul>
           </div>

@@ -1,0 +1,14 @@
+:root {
+    --blue: #001273;
+    --white: #ffffff;
+  }
+  
+.heading {
+    color: var(--blue);
+    font-size: 2rem;
+    font-weight: bolder;
+    padding: 10px;
+    border-bottom: 3px solid var(--blue);
+    text-align: center;
+    letter-spacing: 0.2em;
+  }
