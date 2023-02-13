@@ -4,6 +4,8 @@ import s4 from '../images/s4.png'
 import logo from '../images/logo.png'
 import QR from '../images/QR.png'
 import "../Css/certificate_design.css"
+
+
 export const Certificate = () => {
   return (
     <div>
@@ -11,14 +13,14 @@ export const Certificate = () => {
       <div className="preview">
         <h1 style={{ fontWeigt: "bolder" }}><b> PREVIEW STUDENT'S DEGREE</b>
         </h1>
-        <p style={{ color: "#42535E", }}>If you are confident in the accuracy of a student's marks, enter the marks into the blockchain. If any updates are necessary, make the necessary adjustments to the student's marks.</p>
+        <p style={{ color: "black", }}>If you are confident in the accuracy of a student's marks, enter the marks into the blockchain. If any updates are necessary, make the necessary adjustments to the student's marks.</p>
       </div>
       {/* ------heading with some text code end */}
 
 
       {/* ------Certificate code start */}
       <div className='certificate' >
-
+    
         <div className='certimg'>
           <img src={certificate} alt="" class="certimg" style={{
             width: "70%",
