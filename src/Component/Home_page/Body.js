@@ -7,7 +7,7 @@ const Body = () => {
     return (
         <div className='row body-row'>
             <div className='col-md-2 column1'>
-                <img src={pic1}></img>
+                <img src={pic1} alt="IMG"></img>
             </div>
             <div className='col-md-4 column2'>
                 
@@ -16,7 +16,7 @@ const Body = () => {
                     <button className='getStarted_btn'>
                         Get Started
                         <div className='arrow-image'>
-                        <img src={arrow}></img>
+                        <img src={arrow} alt="IMG"></img>
                         </div>
                     </button>
                 </div>
@@ -31,7 +31,7 @@ const Body = () => {
                 </div>
             </div>
             <div className='col-md-2 column4'>
-                <img src={pic2}></img>
+                <img src={pic2} alt="IMG"></img>
             </div>
 
         </div>

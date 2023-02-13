@@ -21,7 +21,7 @@ function Banner() {
           
           <div className='col-sm-6 BannerColumn2'>
             <div className='data_image'>
-              <img src={datapic}></img>
+              <img src={datapic} alt="IMG"></img>
             </div>
 
           </div>
