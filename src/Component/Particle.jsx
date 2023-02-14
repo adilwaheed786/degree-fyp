@@ -27,13 +27,9 @@ function Particle() {
             value: "#FFFFFF",
         },
     },
-    fpsLimit: 120,
+    fpsLimit: 35,
     interactivity: {
         events: {
-            onClick: {
-                enable: true,
-                mode: "push",
-            },
             onHover: {
                 enable: true,
                 mode: "repulse",
@@ -62,18 +58,16 @@ function Particle() {
             width: 1,
         },
         collisions: {
-            enable: true,
-        },
-        move: {
-            directions: "none",
-            enable: true,
-            outModes: {
-                default: "bounce",
+            enable: false,
             },
-            random: false,
-            speed: 4,
+            move: {
+            directions: 'none',
+            enable: true,
+            random: true,
+            speed: 5,
             straight: false,
-        },
+            bounce: false,
+            },
         number: {
             density: {
                 enable: true,
