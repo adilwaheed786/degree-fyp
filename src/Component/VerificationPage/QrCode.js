@@ -23,7 +23,7 @@ const QrCode = () => {
           <div className='.col-6 QR-image'>
             {
               ShowImage ? (
-                <img src={image}></img>
+                <img src={image} alt='img'></img>
               ) : null
             }
             {cameraState ? (

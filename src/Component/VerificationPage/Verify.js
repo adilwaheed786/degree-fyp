@@ -10,9 +10,10 @@ import './verification.css'
 //     )
 // }
 
-export const Verify = () => {
 
-    const [ShowTabs, setShowTabs] = useState([0]);
+export const Verify = () => {
+ debugger;
+    const [ShowTabs, setShowTabs] = useState(Tabs[0]);
     // const [value, setValue] = useState(0);
     // setShowTabs(Tabs[value])
 
@@ -41,7 +42,7 @@ export const Verify = () => {
                                             <h7 key={id} onClick={() => {
                                                 setShowTabs(Tabs[id])
                                             }} className={`${ShowTabs === Tabs[id] ? 'active-btn': ''}`} >
-                                                {buttonText}
+                                                 {buttonText}
                                             </h7>
 
                                         )

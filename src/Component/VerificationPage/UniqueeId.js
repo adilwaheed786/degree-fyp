@@ -10,7 +10,7 @@ const UniqueeId = () => {
   const [error, setError] = useState(false);
   const handleSubmit = (event) => {
       event.preventDefault();
-      if (inputValue.length == 0) {
+      if (inputValue.length === 0) {
           setError(true);
       }
   }
