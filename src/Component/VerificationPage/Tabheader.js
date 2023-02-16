@@ -2,7 +2,7 @@
 import React from "react";
 import UniqueId from './UniqueeId';
 import QrCode  from "./QrCode";
-import homepage from '../../Component/Admin/StudentDetail/StudentCertificate'
+//import homepage from '../../Component/Admin/StudentDetail/StudentCertificate'
 
 export const Tabs =[
     {
