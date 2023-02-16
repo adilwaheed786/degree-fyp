@@ -12,7 +12,6 @@ import './verification.css'
 
 
 export const Verify = () => {
- debugger;
     const [ShowTabs, setShowTabs] = useState(Tabs[0]);
     // const [value, setValue] = useState(0);
     // setShowTabs(Tabs[value])
