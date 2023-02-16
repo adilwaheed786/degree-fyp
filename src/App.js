@@ -8,8 +8,9 @@ import {NoPage} from './Component/NoPage'
 import Homepage from './Component/Home_page/Homepage'
 import { Certificatedetails } from './Component/Certificatedetails'
 import { AdminLogin } from './Component/Admin/Login/AdminLogin'
-import { Verify } from './Component/Admin/Authentication/Verify'
+//import { Verify } from './Component/Admin/Authentication/Verify'
 import { StudentCertificate } from './Component/Admin/StudentDetail/StudentCertificate'
+import { Verify } from './Component/VerificationPage/Verify'
 import "./Css/certificate_design.css"
 import Particle from './Component/Particle'
 
