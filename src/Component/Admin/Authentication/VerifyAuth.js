@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 import './verify.css';
 
-export const Verify = () => {
+export const VerifyAuth = () => {
     const [code, setCode] = useState('');
 
     return (

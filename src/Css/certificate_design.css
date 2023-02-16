@@ -164,12 +164,19 @@ img {
 
 /* ---------Button code end */
 /* -------fOOTER CODE START */
+/* .footer-main{
+  padding-top: 70px;
+} */
 .footer {
   padding: 5px;
 
   background-color: #020151;
   color: white;
   text-align: center;
+  /* position: fixed;
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap; */
 
 }
 

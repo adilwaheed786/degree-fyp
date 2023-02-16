@@ -1,7 +1,7 @@
 import React from 'react'
 export const Foooter = () => {
   return (
-    <div>
+    <div className='footer-main'>
         {/* ------Footer code start */}
 <div className="footer">
 
