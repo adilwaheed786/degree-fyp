@@ -1,6 +1,6 @@
 
 import React from "react";
-import UniqueId from './UniqueId';
+import UniqueId from './UniqueeId';
 import QrCode  from "./QrCode";
 import homepage from '../../Component/Admin/StudentDetail/StudentCertificate'
 

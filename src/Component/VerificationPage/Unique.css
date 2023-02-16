@@ -1,0 +1,62 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: " Rammetto";
+  
+  }
+  
+  body {
+    background: #FFFFFF;
+    margin: auto;
+    width: 100%;
+    height: auto;
+  }
+  .UID-div{
+    display: flex;
+  }
+
+  .label-div{
+    display: flex;
+    justify-content: center;
+    width: 30%;
+    padding-top: 15px;
+    border-right: 3px solid #A6A1A1;
+  }
+  .roboo{
+    display: flex;
+  }
+  .notRobot{
+    border: 3px solid #A6A1A1;
+    margin-left: 0px !important;
+    width: 71%;
+
+  }
+
+  .emptyy{
+    border: 3px solid #A6A1A1;
+    border-right: 1px  !important;
+    width: 30%;
+  }
+  
+  @media only screen and (max-width:867px) {
+    .emptyy{
+      display: none;
+    }
+    .Id-input{
+      width: 50%;
+    }
+    .notRobot{
+      width: fit-content;
+    }
+    
+    
+
+    
+  }
+  @media only screen and (max-width:266px) {
+    .id-label{
+      font-size:12px
+}
+  }
+  

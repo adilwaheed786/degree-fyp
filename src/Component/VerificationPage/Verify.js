@@ -1,9 +1,7 @@
 
 import React, { useState } from 'react';
-import { useEffect } from 'react';
 import { Tabs } from './Tabheader.js'
 import './verification.css'
-import UID from './UniqueId'
 
 // const HeadingDisplay= ({heading}) =>{
 
@@ -55,13 +53,13 @@ export const Verify = () => {
                         </div>
                     </div>
 
-                    <div className='col-sm-6'>
+                    <div className='col-sm-7'>
                         <div className='tab-header'>
                             <h2 key={ShowTabs.id} >{ShowTabs.text}</h2>
                         </div>
                         {ShowTabs.component}
                     </div>
-                    <div className='col-2'>
+                    <div className='col-1'>
 
                     </div>
                 </div>
