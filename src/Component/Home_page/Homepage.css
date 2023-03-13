@@ -146,7 +146,23 @@ background-image: url('../../images/Rectangle\ 27.png');
     padding-bottom: 2%;
     
  }
+ .fakedgreeImage{
+    width:70%
+ }
+
+ .content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 3rem;
+ }
  
+ .content p {
+    margin-right: 13rem;
+ }
+ .content h4{
+    text-decoration: underline  #101E2E ;
+ }
 
  /* Media Query */
  @media only screen and (max-width:786px){
@@ -176,6 +192,15 @@ background-image: url('../../images/Rectangle\ 27.png');
         float: right;
          width: 294px;
        /* padding-top: 13%; */ 
+     }
+     .content p{
+        margin-right: 0px;
+     }
+     .content h4{
+        font-size: 1em !important;
+     }
+     .roww{
+        overflow-x: hidden !important;
      }
     
  }
