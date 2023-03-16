@@ -1,4 +1,5 @@
 import React, { Component, useState } from "react";
+import { Link } from "react-router-dom";
 import "./Adminlogin.css"
 import "./Login_component"
 export default function SignUp() {
@@ -38,7 +39,7 @@ export default function SignUp() {
           console.log(data, "userRegister");
           if (data.status == "ok") {
             alert("Registration Successful");
-        
+            window.location.href = "./sign-in";
           } else {
             alert("Something went wrong");
           }
@@ -70,7 +71,7 @@ export default function SignUp() {
               type="text"
               className="form-control"
               placeholder="First name"
-              onChange={(e) => setFname(e.target.value)}
+              onChange={(e) => setFname(e.target.value)}required
             />
           </div>
 
@@ -80,7 +81,7 @@ export default function SignUp() {
               type="text"
               className="form-control"
               placeholder="Last name"
-              onChange={(e) => setLname(e.target.value)}
+              onChange={(e) => setLname(e.target.value)}required
             />
           </div>
 
@@ -91,7 +92,7 @@ export default function SignUp() {
              
               className="form-control"
               placeholder="Enter email"
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => setEmail(e.target.value)}required
             />
           </div>
 
@@ -101,18 +102,21 @@ export default function SignUp() {
               type="password"
               className="form-control"
               placeholder="Enter password"
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => setPassword(e.target.value)}required
             />
           </div>
 
           <div className="d-grid">
-          {/* <Link onClick={e => (!fname) ? e.preventDefault() : null} to={"/sign-in"}>
-          <button className={'button mt-20'} type="submit">SIGN UP</button>
-        </Link> */}
-    
-         <button className={'button mt-20'} type="submit">
-          <a style={{color:"white" }} href="/sign-in">Sign Up</a>
-            </button>
+          {/* <button onClick={e => (!fname || !lname || !email || !password) ? e.preventDefault() : null} to={"/sign-in"}> </button>
+          <button  className={'button mt-20'} type="submit" 
+          > SIGN UP</button> */}
+       
+      <button className={'button mt-20'} type="submit" href="/sign-in" style={{color:"white" }}>
+        Sign Up
+            </button>  
+         {/* <button className={'button mt-20'} type="submit">
+          <a  href="/sign-in" style={{color:"white" }}>Sign Up</a>
+            </button>  */}
             
           </div>
           <p className="forgot-password text-right" style={{color:"blue" }}>
