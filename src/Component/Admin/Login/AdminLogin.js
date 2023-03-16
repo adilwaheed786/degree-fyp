@@ -7,6 +7,10 @@ export const AdminLogin = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
+  const sendOtp =(e) =>{
+     e.preventDefault()
+  }
+
   return (
     <div className="OuterContainer">
       <div className="InnerContainer">
@@ -20,7 +24,7 @@ export const AdminLogin = () => {
           <input placeholder="Password" className="form-control UserInput mt-20 shadow" type="text" onChange={(event) => setPassword(event.target.value)} />
         </div>
         <Link onClick={e => (!username || !password) ? e.preventDefault() : null} to={"/verify-auth"}>
-          <button className={'button mt-20'} type="submit">Log In</button>
+          <button className={'button mt-20'} type="submit" onClick={sendOtp}>Log In</button>
         </Link>
       </div>
     </div>
