@@ -9,7 +9,14 @@ body {
   padding: 0;
   margin: 0;
 }
-
+a
+{
+  text-decoration: none;
+  color:#001273
+}
+a .signup{
+  color:#001273;
+}
 /* #root {
     height: 100vh;
   } */
