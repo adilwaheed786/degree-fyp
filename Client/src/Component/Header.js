@@ -24,7 +24,7 @@ export const Header = () => {
             </ul>
             <ul className="navbar-nav d-flex flex-row me-1">
               <li className="nav-item">
-                <Link  className="nav-link" to="/admin" class="white-text">ADMIN PANNEL</Link>
+                <Link  className="nav-link" to="/sign-in" class="white-text">ADMIN PANNEL</Link>
               </li>
             </ul>
           </div>
