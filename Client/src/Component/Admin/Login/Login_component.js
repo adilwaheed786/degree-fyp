@@ -30,11 +30,15 @@ export default function Login() {
           alert("login successful");
           window.localStorage.setItem("token", data.data);
           window.localStorage.setItem("loggedIn", true);
-
           window.location.href = "./verify-auth";
+          
         }
+        else {
+  alert("Something went wrong");
+}
       });
   }
+
 
   return (
   <div className="OuterContainer">
@@ -45,14 +49,16 @@ export default function Login() {
         <div className="mb-3">
 
           <input
+        
             type="email"
+          
             className="form-control"
             placeholder="Enter email"
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
 
-        <div className="mb-3">
+        <div className="mb-3"> 
 
           <input
             type="password"
@@ -77,13 +83,12 @@ export default function Login() {
 
         <div className="d-grid">
           <button className={'button mt-20'} type="submit">
-            <a style={{ color: "white" }} >LOGIN</a>
+            <a style={{ color: "white" }} href="/verify-auth" ></a>
+            LOGIN
           </button>
 
         </div>
-        <p className="forgot-password text-right">
-          <a href="/sign-up">Sign Up</a>
-        </p>
+       
       </form>
     </div>
   </div>
