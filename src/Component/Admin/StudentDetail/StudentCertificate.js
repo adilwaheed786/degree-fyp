@@ -108,7 +108,7 @@ export const StudentCertificate = () => {
             && handleEnrollnment(enrollment) && handleRegistrationChange(registration) && handleProgramChange(program) && handleBatchChange(batch)
             && handleDateChange(dateofgraduation) && validateCgpa(cgpa) ) {
 
-            navigate("../certificate_details");
+            navigate("../confirm");
 
         }
 
