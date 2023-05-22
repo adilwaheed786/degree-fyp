@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/degree-fyp/static/css/main.a0b69851.css",
-    "main.js": "/degree-fyp/static/js/main.771f94e7.js",
+    "main.js": "/degree-fyp/static/js/main.a5085fd4.js",
     "static/js/787.83b26b43.chunk.js": "/degree-fyp/static/js/787.83b26b43.chunk.js",
     "static/media/certificate.png": "/degree-fyp/static/media/certificate.72ec22e3f4148c2855da.png",
     "static/media/Rectangle 27.png": "/degree-fyp/static/media/Rectangle 27.122db2b36e739f53f588.png",
@@ -14,11 +14,11 @@
     "static/media/QR.png": "/degree-fyp/static/media/QR.ce99371e2932a305d66d.png",
     "index.html": "/degree-fyp/index.html",
     "main.a0b69851.css.map": "/degree-fyp/static/css/main.a0b69851.css.map",
-    "main.771f94e7.js.map": "/degree-fyp/static/js/main.771f94e7.js.map",
+    "main.a5085fd4.js.map": "/degree-fyp/static/js/main.a5085fd4.js.map",
     "787.83b26b43.chunk.js.map": "/degree-fyp/static/js/787.83b26b43.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.a0b69851.css",
-    "static/js/main.771f94e7.js"
+    "static/js/main.a5085fd4.js"
   ]
 }
