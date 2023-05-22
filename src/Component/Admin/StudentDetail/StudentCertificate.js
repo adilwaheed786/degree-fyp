@@ -156,7 +156,7 @@ export const StudentCertificate = () => {
 
             setFathernameError('Father name is required');
         } else {
-            const regs = /^[a-zA-Z]+$/;
+            const regs = /^[a-zA-Z\s]+$/;
             if (!regs.test(fathername)) {
                 setFathernameError('Father name should contain only letters');
             }
