@@ -1,7 +1,9 @@
 import React from 'react'
+
 import "../Css/certificate_details.css"
 import logo from '../images/logo.png'
 export const Certificatedetails = () => {
+
   return (
     <div >
          {/* ------heading with some text code start */}

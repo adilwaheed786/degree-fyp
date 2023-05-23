@@ -62,6 +62,11 @@ export const StudentCertificate = () => {
             setFathername(formData.fathername);
             setDateofgraduation(formData.dateofgraduation);
             setCgpa(formData.cgpa)
+            setBatch(formData.batch)
+            setRegistration(formData.registration)
+            setEnrollment(formData.enrollment)
+            setOther(formData.other)
+            setProgram(formData.program)
         }
     }, [formData])
 
