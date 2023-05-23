@@ -3,7 +3,7 @@ name: Github Pages Deploy
 on:
   push:
     branches:
-      - "Adding_Server"
+      - "master"
 jobs:
   build:
     runs-on: ubuntu-latest
