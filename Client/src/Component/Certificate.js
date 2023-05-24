@@ -4,9 +4,68 @@ import s4 from '../images/s4.png'
 import logo from '../images/logo.png'
 import QR from '../images/QR.png'
 import "../Css/certificate_design.css"
+import { useState } from 'react'
+import { useLocation,useNavigate} from 'react-router-dom';
 
 
 export const Certificate = () => {
+  const location = useLocation();
+  const formData = location.state;
+  console.log(formData)
+  debugger;
+  const navigate = useNavigate()
+
+
+
+  // const queryParams = new URLSearchParams(location.search);
+  const {
+    firstname,
+    lastname,
+    fathername,
+    enrollment,
+    registration,
+    program,
+    batch,
+    dateofgraduation,
+    cgpa,
+  } = formData;
+  // const firstname = queryParams.get('firstname');
+  const [updatedData, setUpdatedData] = useState(formData);
+
+  console.log('hey')
+  console.log(firstname)
+  // const lastname = queryParams.get('lastname');
+  // const fathername = queryParams.get('fathername');
+  // const enrollment = queryParams.get('enrollment');
+  // const registration = queryParams.get('registration');
+  // const program = queryParams.get('program');
+  // const batch = queryParams.get('batch');
+  // const dateofgraduation = queryParams.get('dateofgraduation');
+  // const cgpa = queryParams.get('cgpa');
+
+  const handleUpdate = () => {
+    debugger
+    navigate('/student-certificate', { state: updatedData });
+  };
+
+  const getAbbreviation = (text) => {
+    const prepositions = ['of', 'in', 'on', 'at', 'for', 'to', 'by', 'with'];
+
+    // Split the text into words
+    const words = text.split(' ');
+
+    // Filter out prepositions
+    const filteredWords = words.filter((word) => !prepositions.includes(word.toLowerCase()));
+
+    // Map each remaining word to its first letter and capitalize it
+    const abbreviation = filteredWords
+      .map((word) => word.charAt(0).toUpperCase())
+      .join('');
+
+    return abbreviation;
+  };
+
+  
   return (
     <div>
       {/* ------heading with some text code start */}
@@ -38,15 +97,16 @@ export const Certificate = () => {
               width: "10%",
             }} />
             <p class="bahria">BAHRIA AND FACULTY OF UNIVERSITY HAVE GRANTED TO </p>
-            <h5>SUMAYYA KHALID</h5>
-            <h5>BACHLORS OF SOFTWARE ENGINEERING  </h5>
-            <p>CGPA:3.44</p>
+            <h5 style={{textTransform: 'capitalize'}}>{firstname + " " + lastname}</h5>
+            <h5 style={{textTransform: 'Uppercase'}}>{getAbbreviation(program)}</h5>
+            <p>CGPA: {cgpa}</p>
+
 
             <p>WITH ALL THE RIGHTS AND PRIVILIGES THERES TO</p>
 
 
             <div className='sealdiv'>
-              <p>ISSUE DATE: 9/2/2023</p>
+            <p>Date Of Graduation: {dateofgraduation} </p>
 
               <img src={s4} alt="" style={{
                 maxwidth: "100px",
@@ -76,7 +136,7 @@ export const Certificate = () => {
         <div className="buttons">
 
 
-          <button type="button" class="btn btn-outline-primary">Update</button>
+          <button type="button" class="btn btn-outline-primary" onClick={handleUpdate}>Update</button>
           <button type="button" class="btn btn-outline-primary">Upload</button>
         </div>
         {/* --------buttons code end */}
@@ -89,3 +149,4 @@ export const Certificate = () => {
     </div>
   )
 }
+export default Certificate;

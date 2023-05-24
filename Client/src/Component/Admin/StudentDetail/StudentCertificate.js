@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { Link,useNavigate } from "react-router-dom";
+import React, { useState,useEffect } from 'react'
+import { Link , useNavigate, useLocation} from "react-router-dom";
 import './studentcertificate.css';
 
 export const StudentCertificate = () => {
@@ -32,6 +32,31 @@ export const StudentCertificate = () => {
     const [cgpa, setCgpa] = useState('');
     const [cgpaError, setCgpaError] = useState('');
     const navigate = useNavigate();
+    const location = useLocation()
+    const formData = location.state
+    console.log(formData)
+
+    const handleButtonClick = (e) => {
+        e.preventDefault();
+
+        
+    };
+    
+    useEffect(() => {
+        debugger
+        if (formData != undefined) {
+            setFirstname(formData.firstname);
+            setLastname(formData.lastname);
+            setFathername(formData.fathername);
+            setDateofgraduation(formData.dateofgraduation);
+            setCgpa(formData.cgpa)
+            setBatch(formData.batch)
+            setRegistration(formData.registration)
+            setEnrollment(formData.enrollment)
+            setOther(formData.other)
+            setProgram(formData.program)
+        }
+    }, [formData])
     const handlepreview = (e) => {
         e.preventDefault();
 
@@ -108,10 +133,29 @@ export const StudentCertificate = () => {
             && handleEnrollnment(enrollment) && handleRegistrationChange(registration) && handleProgramChange(program) && handleBatchChange(batch)
             && handleDateChange(dateofgraduation) && validateCgpa(cgpa) ) {
 
-            navigate("../confirm");
+                if (firstname && lastname && fathername && enrollment && registration && program && batch && dateofgraduation && cgpa) {
+                    const formData =
+                    {
+                        firstname,
+                        lastname,
+                        fathername,
+                        enrollment,
+                        registration,
+                        program,
+                        batch,
+                        dateofgraduation,
+                        cgpa,
+                        other,
+                    }
+        
+                    navigate('/confirm', { state: formData });
+        
+                }
+        
 
         }
 
+    
     };
     const handleFirstnameChange = (firstname) => {
 
@@ -298,13 +342,13 @@ export const StudentCertificate = () => {
 
 
 
-                                <input type="text" placeholder="FirstName" className={"form-control shadow"} onChange={(event) => setFirstname(event.target.value)} onFocus={handleFirstNameFocus}
+                                <input type="text" placeholder="FirstName" className={"form-control shadow"}value={firstname}  onChange={(event) => setFirstname(event.target.value)} onFocus={handleFirstNameFocus}
                                 />
                                 {firstnameError && <span style={{ color: 'red' }}>{firstnameError}</span>}
                             </div>
 
                             <div className="form-group col-md-4 m-2">
-                                <input type="text" className="form-control shadow" placeholder="LastName" onChange={(event) => setLastname(event.target.value)} onFocus={handleLastNameFocus} />
+                                <input type="text" className="form-control shadow" placeholder="LastName"  value={lastname} onChange={(event) => setLastname(event.target.value)} onFocus={handleLastNameFocus} />
                                 {lastnameError && <span style={{ color: 'red' }}>{lastnameError}</span>}
                             </div>
                         </div>
@@ -312,11 +356,11 @@ export const StudentCertificate = () => {
                     <div class="row">
                         <div className='d-flex justify-content-center'>
                             <div className="form-group col-md-4 m-2">
-                                <input type="text" className="form-control shadow" placeholder="FatherName" onChange={(event) => setFathername(event.target.value)} onFocus={handlefatherNameFocus} />
+                                <input type="text" className="form-control shadow" placeholder="FatherName" value={fathername}  onChange={(event) => setFathername(event.target.value)} onFocus={handlefatherNameFocus} />
                                 {fathernameError && <span style={{ color: 'red' }}>{fathernameError}</span>}
                             </div>
                             <div className="form-group col-md-4 m-2">
-                                <input type="text" className="form-control shadow" placeholder="Other Information" onChange={(event) => setOther(event.target.value)} onFocus={handleOtherinfoFocus} />
+                                <input type="text" className="form-control shadow" placeholder="Other Information" value={other}  onChange={(event) => setOther(event.target.value)} onFocus={handleOtherinfoFocus} />
                                 {otherError && <span style={{ color: 'red' }}>{otherError}</span>}
                             </div>
                         </div>
@@ -324,12 +368,12 @@ export const StudentCertificate = () => {
                     <div class="row">
                         <div className='d-flex justify-content-center'>
                             <div className="form-group col-md-4 m-2">
-                                <input type="text" className="form-control  shadow" placeholder="Enrollment Number" onChange={(event) => setEnrollment(event.target.value)} onFocus={handleenrollnmentFocus} />
+                                <input type="text" className="form-control  shadow" placeholder="Enrollment Number" value={enrollment} onChange={(event) => setEnrollment(event.target.value)} onFocus={handleenrollnmentFocus} />
                                 {enrollmentError && <span style={{ color: 'red' }}>{enrollmentError}</span>}
                             </div>
                             <div className="form-group col-md-4 m-2">
 
-                                <input type="text" value={registration} placeholder="Registration no" className="form-control  shadow" onChange={(event) => setRegistration(event.target.value)} onFocus={handleregFocus} />
+                                <input type="text" value={registration} placeholder="Registration no" className="form-control  shadow"  onChange={(event) => setRegistration(event.target.value)} onFocus={handleregFocus} />
                                 {registrationError && <span style={{ color: 'red' }}>{registrationError}</span>}
                             </div>
                         </div>
@@ -337,11 +381,11 @@ export const StudentCertificate = () => {
                     <div class="row">
                         <div className='d-flex justify-content-center'>
                             <div className="form-group col-md-4 m-2">
-                                <input type="text" className="form-control shadow" placeholder="Program" onChange={(event) => setProgram(event.target.value)} onFocus={handleprogramFocus} />
+                                <input type="text" className="form-control shadow" placeholder="Program"  value={program} onChange={(event) => setProgram(event.target.value)} onFocus={handleprogramFocus} />
                                 {programError && <span style={{ color: 'red' }}>{programError}</span>}
                             </div>
                             <div className="form-group col-md-4 m-2">
-                                <input type="text" className="form-control shadow" placeholder="Batch #" onChange={(event) => setBatch(event.target.value)} onFocus={handlebatchFocus} />
+                                <input type="text" className="form-control shadow" placeholder="Batch #" value={batch} onChange={(event) => setBatch(event.target.value)} onFocus={handlebatchFocus} />
                                 {batchError && <span style={{ color: 'red' }}>{batchError}</span>}
                             </div>
                         </div>
@@ -349,11 +393,11 @@ export const StudentCertificate = () => {
                     <div class="row">
                         <div className='d-flex justify-content-center'>
                             <div className="form-group col-md-4 m-2">
-                                <input type="date" className="form-control shadow" placeholder="Date Of Graduation" onChange={(event) => setDateofgraduation(event.target.value)} onFocus={handledateFocus} />
+                                <input type="date" className="form-control shadow" placeholder="Date Of Graduation" value={dateofgraduation} onChange={(event) => setDateofgraduation(event.target.value)} onFocus={handledateFocus} />
                                 {dateofgraduationError && <span style={{ color: 'red' }}>{dateofgraduationError}</span>}
                             </div>
                             <div className="form-group col-md-4 m-2">
-                                <input type="text" className={"form-control shadow"} placeholder="CGPA" onChange={(event) => setCgpa(event.target.value)} onFocus={handlecgpaFocus} />
+                                <input type="text" className={"form-control shadow"} placeholder="CGPA" alue={cgpa}  onChange={(event) => setCgpa(event.target.value)} onFocus={handlecgpaFocus} />
                                 {cgpaError && <span style={{ color: 'red' }}>{cgpaError}</span>}
                             </div>
 
