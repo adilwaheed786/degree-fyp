@@ -174,12 +174,8 @@ export const StudentCertificate = () => {
 
             setotherError('Location of campus is required');
         } else {
-            const regs = /^[a-zA-Z\s]+$/;
             
-            if (!regs.test(other)) {
-                setotherError('Location of campus should contain only letters');
-            }
-            return regs.test(other);
+            return true;
 
         }
     }
@@ -227,11 +223,8 @@ export const StudentCertificate = () => {
 
             setProgramError('Program name is required');
         } else {
-            const regs = /^[a-zA-Z]+$/;
-            if (!regs.test(programname)) {
-                setProgramError('Program name should contain only letters');
-            }
-            return regs.test(programname);
+            
+            return true;
 
         }
     }
@@ -316,9 +309,15 @@ export const StudentCertificate = () => {
                                 {fathernameError && <span style={{ color: 'red' }}>{fathernameError}</span>}
                             </div>
                             <div className="form-group col-md-4 m-2">
-                                <input type="text" className="form-control shadow" placeholder="Other Information" onChange={(event) => setOther(event.target.value)} onFocus={handleOtherinfoFocus} />
-                                {otherError && <span style={{ color: 'red' }}>{otherError}</span>}
-                            </div>
+  <select className="form-control shadow" onChange={(event) => setOther(event.target.value)} onFocus={handleOtherinfoFocus}>
+    <option value="">Select Campus</option>
+    <option value="Option 1">Karachi</option>
+    <option value="Option 2">Lahore</option>
+    <option value="Option 3">Islamabad</option>
+    {/* Add more options as needed */}
+  </select>
+  {otherError && <span style={{ color: 'red' }}>{otherError}</span>}
+</div>
                         </div>
                     </div>
                     <div class="row">
@@ -336,10 +335,17 @@ export const StudentCertificate = () => {
                     </div>
                     <div class="row">
                         <div className='d-flex justify-content-center'>
-                            <div className="form-group col-md-4 m-2">
-                                <input type="text" className="form-control shadow" placeholder="Program" onChange={(event) => setProgram(event.target.value)} onFocus={handleprogramFocus} />
-                                {programError && <span style={{ color: 'red' }}>{programError}</span>}
-                            </div>
+                        <div className="form-group col-md-4 m-2">
+  <select className="form-control shadow" onChange={(event) => setProgram(event.target.value)} onFocus={handleprogramFocus} >
+    <option value="" >Select Program</option>
+    <option value="Program 1">Bachlors of Software Engineering</option>
+    <option value="Program 2">Bachlors of Electrical Engineering</option>
+    <option value="Program 3">Bachlors of Mechanical Engineering</option>
+    <option value="Program 4">Bachlors of Computer Engineering</option>
+    {/* Add more programs as needed */}
+  </select>
+  {programError && <span style={{ color: 'red' }}>{programError}</span>}
+</div>
                             <div className="form-group col-md-4 m-2">
                                 <input type="text" className="form-control shadow" placeholder="Batch #" onChange={(event) => setBatch(event.target.value)} onFocus={handlebatchFocus} />
                                 {batchError && <span style={{ color: 'red' }}>{batchError}</span>}
