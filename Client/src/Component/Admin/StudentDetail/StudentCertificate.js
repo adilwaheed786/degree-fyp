@@ -271,7 +271,7 @@ export const StudentCertificate = () => {
 
             setProgramError('Program name is required');
         } else {
-            const regs = /^[a-zA-Z]+$/;
+            const regs = /^[a-zA-Z\s]+$/;
             if (!regs.test(programname)) {
                 setProgramError('Program name should contain only letters');
             }
@@ -397,7 +397,7 @@ export const StudentCertificate = () => {
                                 {dateofgraduationError && <span style={{ color: 'red' }}>{dateofgraduationError}</span>}
                             </div>
                             <div className="form-group col-md-4 m-2">
-                                <input type="text" className={"form-control shadow"} placeholder="CGPA" alue={cgpa}  onChange={(event) => setCgpa(event.target.value)} onFocus={handlecgpaFocus} />
+                                <input type="text" className={"form-control shadow"} placeholder="CGPA" value={cgpa}  onChange={(event) => setCgpa(event.target.value)} onFocus={handlecgpaFocus} />
                                 {cgpaError && <span style={{ color: 'red' }}>{cgpaError}</span>}
                             </div>
 
