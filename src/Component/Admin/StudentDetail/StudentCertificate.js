@@ -55,7 +55,7 @@ export const StudentCertificate = () => {
     };
 
     useEffect(() => {
-        debugger
+        
         if (formData != undefined) {
             setFirstname(formData.firstname);
             setLastname(formData.lastname);

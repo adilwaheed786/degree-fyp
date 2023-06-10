@@ -12,12 +12,30 @@ import { useLocation,useNavigate} from 'react-router-dom';
 import axios from 'axios'
 import saveAs from 'file-saver'
 
+
+
 export const Certificate = () => {
   const location = useLocation();
   const formData = location.state;
   console.log(formData)
-  debugger;
+  
   const navigate = useNavigate()
+  const createAndDownloadpdf =  () =>{
+    debugger
+     axios.post('/create-pdf')
+     .then(() => axios.get('/fetch-pdf', {responseType: 'blob'}))
+     .then((res) =>{
+       const pdfBlob = new Blob([res.data],{type:'application/pdf'});
+       saveAs(pdfBlob,'newpdf.pdf')
+       
+       console.log('yahan par method hai')
+ 
+     })
+     .catch((err) => {
+       console.log(err);
+     });
+   }
+ 
 
    // const queryParams = new URLSearchParams(location.search);
    const {
@@ -46,7 +64,7 @@ export const Certificate = () => {
   // const cgpa = queryParams.get('cgpa');
 
   const handleUpdate = () => {
-    debugger
+    
     navigate('/student-certificate', { state: updatedData });
   };
 
@@ -68,21 +86,7 @@ export const Certificate = () => {
   };
 
   
-  const createAndDownloadpdf = async () =>{
-   
-    axios.post('/create-pdf')
-    .then(() => axios.get('/fetch-pdf', {responseType: 'blob'}))
-    .then((res) =>{
-      const pdfBlob = new Blob([res.data],{type:'application/pdf'});
-      saveAs(pdfBlob,'newpdf.pdf')
-      console.log('yahan par method hai')
-
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-  }
-
+  
   // const styles = StyleSheet.create({
   //   preview: {
   //     marginBottom: 20,
@@ -249,3 +253,6 @@ export const Certificate = () => {
     </div>
   )
 }
+
+
+//latestStah1 (This is important for now. baad mai iss comment ko delete kar daina)

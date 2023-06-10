@@ -21,6 +21,7 @@ app.post('/create-pdf',async (req,res)=>{
     pdf.create(temp).toFile('result.pdf',(err)=>{
         if(err){
             res.send(Promise.reject())
+            debugger
         }else{
             res.send(Promise.resolve());
         }
