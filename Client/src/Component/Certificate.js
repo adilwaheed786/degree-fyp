@@ -32,38 +32,6 @@ export const Certificate = () => {
     dateofgraduation,
     cgpa,
   } = formData;
-  // const firstname = queryParams.get('firstname');
-  
-  // console.log('hey')
-  // console.log(firstname)
-  // const lastname = queryParams.get('lastname');
-  // const fathername = queryParams.get('fathername');
-  // const enrollment = queryParams.get('enrollment');
-  // const registration = queryParams.get('registration');
-  // const program = queryParams.get('program');
-  // const batch = queryParams.get('batch');
-  // const dateofgraduation = queryParams.get('dateofgraduation');
-  // const cgpa = queryParams.get('cgpa');
-  const createAndDownloadpdf =  () =>{
-    
-    axios.post('/create-pdf',{ firstname,
-     lastname,
-     program,
-     dateofgraduation,
-     cgpa })
-    .then(() => axios.get('/fetch-pdf', {responseType: 'blob'}))
-    .then((res) =>{
-      const pdfBlob = new Blob([res.data],{type:'application/pdf'});
-      saveAs(pdfBlob,'newpdf.pdf')
-      
-      console.log('pdf ban gai hai aur download hau gai hai')
-
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-  }
-
 
   const handleGetStoredData = async () => {
     try {
@@ -83,18 +51,6 @@ export const Certificate = () => {
         
         console.log('Stored data from Ganache:');
         console.log(totalCertificates);
-        // Loop through each certificate and retrieve its data
-        // for (let i = 0; i < totalCertificates; i++) {
-        //   const certificateData = await contract.methods.getCertificateData(i).call();
-        //   console.log(certificateData)
-        //   console.log('Certificate', i + 1);
-        //   console.log('First Name:', certificateData.firstname);
-        //   console.log('Last Name:', certificateData.lastname);
-        //   console.log('Program:', certificateData.program);
-        //   console.log('CGPA:', certificateData.cgpa);
-        //   console.log('Date of Graduation:', certificateData.dateofgraduation);
-        //   console.log('----------------------------------------');
-        // }
 
         const certificateDataArray = [];
         for (let i = 0; i < totalCertificates; i++) {
@@ -149,6 +105,23 @@ export const Certificate = () => {
         ).send({ from: fromAddress });
         console.log(transaction) ; 
         console.log('Student details added to the blockchain.');
+
+        axios.post('/create-pdf',{ firstname,
+          lastname,
+          program,
+          dateofgraduation,
+          cgpa })
+         .then(() => axios.get('/fetch-pdf', {responseType: 'blob'}))
+         .then((res) =>{
+           const pdfBlob = new Blob([res.data],{type:'application/pdf'});
+           saveAs(pdfBlob,'newpdf.pdf')
+           
+           console.log('pdf ban gai hai aur download hau gai hai')
+     
+         })
+         .catch((err) => {
+           console.log(err);
+         });
       } else {
         console.error('Web3 provider not found. Make sure you have MetaMask installed.');
       }
@@ -253,9 +226,6 @@ export const Certificate = () => {
         Get Stored Data
       </button>
           <button type="button" class="btn btn-outline-primary" onClick={handleUpdate}>Update</button>
-
-          <button type="button" class="btn btn-outline-primary"onClick={createAndDownloadpdf}>Upload</button>
-
           <button type="button" class="btn btn-outline-primary" onClick={handleUpload}>Upload</button>
         </div>
         {/* --------buttons code end */}
