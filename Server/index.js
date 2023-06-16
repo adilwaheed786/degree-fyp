@@ -16,9 +16,12 @@ app.use(bodyParser.json());
 
 //POST - Generating pdf and fetching the data
 app.post('/create-pdf',async (req,res)=>{
-    let temp = certificateDoc().toString()
+    const { firstname, lastname, program, cgpa, dateofgraduation } = req.body;
+    let temp = certificateDoc({ firstname, lastname, program, cgpa, dateofgraduation}).toString()
+    //let temp = certificateDoc(req.body.state).toString()
+    console.log(temp)
     console.log('create pdf log');
-    pdf.create(temp).toFile('result.pdf',(err)=>{
+    pdf.create(temp,{}).toFile('result.pdf',(err)=>{
         if(err){
             res.send(Promise.reject())
             debugger
