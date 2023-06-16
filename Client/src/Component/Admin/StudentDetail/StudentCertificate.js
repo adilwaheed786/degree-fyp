@@ -43,7 +43,7 @@ export const StudentCertificate = () => {
     };
     
     useEffect(() => {
-        debugger
+        
         if (formData != undefined) {
             setFirstname(formData.firstname);
             setLastname(formData.lastname);
@@ -342,13 +342,13 @@ export const StudentCertificate = () => {
 
 
 
-                                <input type="text" placeholder="FirstName" className={"form-control shadow"}value={firstname}  onChange={(event) => setFirstname(event.target.value)} onFocus={handleFirstNameFocus}
+                                <input type="text" placeholder="FirstName" id="firstname" className={"form-control shadow"}value={firstname}  onChange={(event) => setFirstname(event.target.value)} onFocus={handleFirstNameFocus}
                                 />
                                 {firstnameError && <span style={{ color: 'red' }}>{firstnameError}</span>}
                             </div>
 
                             <div className="form-group col-md-4 m-2">
-                                <input type="text" className="form-control shadow" placeholder="LastName"  value={lastname} onChange={(event) => setLastname(event.target.value)} onFocus={handleLastNameFocus} />
+                                <input  type="text" className="form-control shadow" id="lastname" placeholder="LastName"  value={lastname} onChange={(event) => setLastname(event.target.value)} onFocus={handleLastNameFocus} />
                                 {lastnameError && <span style={{ color: 'red' }}>{lastnameError}</span>}
                             </div>
                         </div>
@@ -356,7 +356,7 @@ export const StudentCertificate = () => {
                     <div class="row">
                         <div className='d-flex justify-content-center'>
                             <div className="form-group col-md-4 m-2">
-                                <input type="text" className="form-control shadow" placeholder="FatherName" value={fathername}  onChange={(event) => setFathername(event.target.value)} onFocus={handlefatherNameFocus} />
+                                <input type="text" className="form-control shadow"  placeholder="FatherName" value={fathername}  onChange={(event) => setFathername(event.target.value)} onFocus={handlefatherNameFocus} />
                                 {fathernameError && <span style={{ color: 'red' }}>{fathernameError}</span>}
                             </div>
                             <div className="form-group col-md-4 m-2">
