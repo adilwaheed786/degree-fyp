@@ -10,8 +10,7 @@ contract StudentCertificateContract {
         string dateofgraduation;
     }
 
-    mapping(address => Certificate) public certificates;
-    address[] public certificateList;
+    Certificate[] public certificateList;
 
     function addStudentDetails(
         string memory _firstname,
@@ -20,44 +19,24 @@ contract StudentCertificateContract {
         string memory _cgpa,
         string memory _dateofgraduation
     ) public {
-        Certificate storage certificate = certificates[msg.sender];
-        certificate.firstname = _firstname;
-        certificate.lastname = _lastname;
-        certificate.program = _program;
-        certificate.cgpa = _cgpa;
-        certificate.dateofgraduation = _dateofgraduation;
-        
-        certificateList.push(msg.sender);
+        Certificate memory certificate = Certificate({
+            firstname: _firstname,
+            lastname: _lastname,
+            program: _program,
+            cgpa: _cgpa,
+            dateofgraduation: _dateofgraduation
+        });
+
+        certificateList.push(certificate);
     }
-    
     function getTotalCertificates() public view returns (uint256) {
         return certificateList.length;
     }
     
     function getCertificateData(uint256 index) public view returns (Certificate memory) {
         require(index < certificateList.length, "Invalid certificate index");
-        
-        address certificateAddress = certificateList[index];
-        return certificates[certificateAddress];
-    }
 
-    function getFirstName(address _address) public view returns (string memory) {
-        return certificates[_address].firstname;
-    }
-
-    function getLastName(address _address) public view returns (string memory) {
-        return certificates[_address].lastname;
-    }
-
-    function getProgram(address _address) public view returns (string memory) {
-        return certificates[_address].program;
-    }
-
-    function getCGPA(address _address) public view returns (string memory) {
-        return certificates[_address].cgpa;
+        return certificateList[index];
     }
     
-    function getDateOfGraduation(address _address) public view returns (string memory) {
-        return certificates[_address].dateofgraduation;
-    }
 }

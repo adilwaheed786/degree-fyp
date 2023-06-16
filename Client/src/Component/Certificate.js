@@ -60,19 +60,27 @@ export const Certificate = () => {
         const totalCertificates = await contract.methods.getTotalCertificates().call();
         
         console.log('Stored data from Ganache:');
-        
+        console.log(totalCertificates);
         // Loop through each certificate and retrieve its data
+        // for (let i = 0; i < totalCertificates; i++) {
+        //   const certificateData = await contract.methods.getCertificateData(i).call();
+        //   console.log(certificateData)
+        //   console.log('Certificate', i + 1);
+        //   console.log('First Name:', certificateData.firstname);
+        //   console.log('Last Name:', certificateData.lastname);
+        //   console.log('Program:', certificateData.program);
+        //   console.log('CGPA:', certificateData.cgpa);
+        //   console.log('Date of Graduation:', certificateData.dateofgraduation);
+        //   console.log('----------------------------------------');
+        // }
+
+        const certificateDataArray = [];
         for (let i = 0; i < totalCertificates; i++) {
           const certificateData = await contract.methods.getCertificateData(i).call();
-          
-          console.log('Certificate', i + 1);
-          console.log('First Name:', certificateData.firstname);
-          console.log('Last Name:', certificateData.lastname);
-          console.log('Program:', certificateData.program);
-          console.log('CGPA:', certificateData.cgpa);
-          console.log('Date of Graduation:', certificateData.dateofgraduation);
-          console.log('----------------------------------------');
+          certificateDataArray.push(certificateData);
         }
+
+        console.log(certificateDataArray);
         
       } else {
         console.error('Web3 provider not found. Make sure you have MetaMask installed.');
@@ -110,14 +118,14 @@ export const Certificate = () => {
         );
   
         // Call the contract's addStudentDetails function
-        await contract.methods.addStudentDetails(
+        const transaction= await contract.methods.addStudentDetails(
           firstname,
           lastname,
           program,
           cgpa,
           dateofgraduation
         ).send({ from: fromAddress });
-  
+        console.log(transaction) ; 
         console.log('Student details added to the blockchain.');
       } else {
         console.error('Web3 provider not found. Make sure you have MetaMask installed.');
