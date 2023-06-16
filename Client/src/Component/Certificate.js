@@ -6,6 +6,8 @@ import QR from '../images/QR.png'
 import "../Css/certificate_design.css"
 import { useState } from 'react'
 import { useLocation,useNavigate} from 'react-router-dom';
+import axios from 'axios'
+import saveAs from 'file-saver'
 import Web3 from 'web3';
 import StudentCertificateContract from '../build/contracts/StudentCertificateContract.json';
 
@@ -13,8 +15,7 @@ import StudentCertificateContract from '../build/contracts/StudentCertificateCon
 export const Certificate = () => {
   const location = useLocation();
   const formData = location.state;
-  // console.log(formData)
-  // debugger;
+  console.log(formData) 
   const navigate = useNavigate()
   const[updatedData, setUpdatedData] = useState(formData);
   const [storedData, setStoredData] = useState(null);
@@ -43,6 +44,27 @@ export const Certificate = () => {
   // const batch = queryParams.get('batch');
   // const dateofgraduation = queryParams.get('dateofgraduation');
   // const cgpa = queryParams.get('cgpa');
+  const createAndDownloadpdf =  () =>{
+    
+    axios.post('/create-pdf',{ firstname,
+     lastname,
+     program,
+     dateofgraduation,
+     cgpa })
+    .then(() => axios.get('/fetch-pdf', {responseType: 'blob'}))
+    .then((res) =>{
+      const pdfBlob = new Blob([res.data],{type:'application/pdf'});
+      saveAs(pdfBlob,'newpdf.pdf')
+      
+      console.log('pdf ban gai hai aur download hau gai hai')
+
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  }
+
+
   const handleGetStoredData = async () => {
     try {
       if (window.ethereum) {
@@ -136,7 +158,7 @@ export const Certificate = () => {
   };
   
   const handleUpdate = () => {
-    debugger
+    
     navigate('/student-certificate', { state: updatedData });
   };
 
@@ -231,6 +253,9 @@ export const Certificate = () => {
         Get Stored Data
       </button>
           <button type="button" class="btn btn-outline-primary" onClick={handleUpdate}>Update</button>
+
+          <button type="button" class="btn btn-outline-primary"onClick={createAndDownloadpdf}>Upload</button>
+
           <button type="button" class="btn btn-outline-primary" onClick={handleUpload}>Upload</button>
         </div>
         {/* --------buttons code end */}
