@@ -190,7 +190,7 @@ export const Certificate = () => {
             }} />
             <p class="bahria">BAHRIA AND FACULTY OF UNIVERSITY HAVE GRANTED TO </p>
             <h5 style={{textTransform: 'capitalize'}}>{firstname + " " + lastname}</h5>
-            <h5 style={{textTransform: 'Uppercase'}}>{getAbbreviation(program)}</h5>
+            <h5 style={{textTransform: 'Uppercase'}}>{program}</h5>
             <p>CGPA: {cgpa}</p>
 
 

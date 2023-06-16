@@ -356,9 +356,9 @@ export const StudentCertificate = () => {
                             <div className="form-group col-md-4 m-2">
   <select className="form-control shadow" onChange={(event) => setOther(event.target.value)} onFocus={handleOtherinfoFocus}>
     <option value="">Select Campus</option>
-    <option value="Option 1">Karachi</option>
-    <option value="Option 2">Lahore</option>
-    <option value="Option 3">Islamabad</option>
+    <option value="Karachi">Karachi</option>
+    <option value="Lahore">Lahore</option>
+    <option value="Islamabad">Islamabad</option>
     {/* Add more options as needed */}
   </select>
   {otherError && <span style={{ color: 'red' }}>{otherError}</span>}
@@ -385,10 +385,10 @@ export const StudentCertificate = () => {
                         <div className="form-group col-md-4 m-2">
   <select className="form-control shadow" onChange={(event) => setProgram(event.target.value)} onFocus={handleprogramFocus} >
     <option value="" >Select Program</option>
-    <option value="Program 1">Bachlors of Software Engineering</option>
-    <option value="Program 2">Bachlors of Electrical Engineering</option>
-    <option value="Program 3">Bachlors of Mechanical Engineering</option>
-    <option value="Program 4">Bachlors of Computer Engineering</option>
+    <option value="Bachlors of Software Engineering">Bachlors of Software Engineering</option>
+    <option value="Bachlors of Electrical Engineering">Bachlors of Electrical Engineering</option>
+    <option value="Bachlors of Mechanical Engineering">Bachlors of Mechanical Engineering</option>
+    <option value="Bachlors of Computer Engineering">Bachlors of Computer Engineering</option>
     {/* Add more programs as needed */}
   </select>
   {programError && <span style={{ color: 'red' }}>{programError}</span>}
