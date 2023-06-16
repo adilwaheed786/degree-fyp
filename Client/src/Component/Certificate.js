@@ -6,13 +6,16 @@ import QR from '../images/QR.png'
 import "../Css/certificate_design.css"
 import { useState } from 'react'
 import { useLocation,useNavigate} from 'react-router-dom';
+import axios from 'axios'
+import saveAs from 'file-saver'
+
 
 
 export const Certificate = () => {
   const location = useLocation();
   const formData = location.state;
   console.log(formData)
-  debugger;
+  
   const navigate = useNavigate()
 
 
@@ -42,9 +45,29 @@ export const Certificate = () => {
   // const batch = queryParams.get('batch');
   // const dateofgraduation = queryParams.get('dateofgraduation');
   // const cgpa = queryParams.get('cgpa');
+  const createAndDownloadpdf =  () =>{
+    
+    axios.post('/create-pdf',{ firstname,
+     lastname,
+     program,
+     dateofgraduation,
+     cgpa })
+    .then(() => axios.get('/fetch-pdf', {responseType: 'blob'}))
+    .then((res) =>{
+      const pdfBlob = new Blob([res.data],{type:'application/pdf'});
+      saveAs(pdfBlob,'newpdf.pdf')
+      
+      console.log('pdf ban gai hai aur download hau gai hai')
+
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  }
+
 
   const handleUpdate = () => {
-    debugger
+    
     navigate('/student-certificate', { state: updatedData });
   };
 
@@ -98,7 +121,7 @@ export const Certificate = () => {
             }} />
             <p class="bahria">BAHRIA AND FACULTY OF UNIVERSITY HAVE GRANTED TO </p>
             <h5 style={{textTransform: 'capitalize'}}>{firstname + " " + lastname}</h5>
-            <h5 style={{textTransform: 'Uppercase'}}>{getAbbreviation(program)}</h5>
+            <h5 style={{textTransform: 'Uppercase'}}>{program}</h5>
             <p>CGPA: {cgpa}</p>
 
 
@@ -137,7 +160,7 @@ export const Certificate = () => {
 
 
           <button type="button" class="btn btn-outline-primary" onClick={handleUpdate}>Update</button>
-          <button type="button" class="btn btn-outline-primary">Upload</button>
+          <button type="button" class="btn btn-outline-primary"onClick={createAndDownloadpdf}>Upload</button>
         </div>
         {/* --------buttons code end */}
 
