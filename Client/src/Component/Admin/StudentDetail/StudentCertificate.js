@@ -43,7 +43,7 @@ export const StudentCertificate = () => {
     };
     
     useEffect(() => {
-        debugger
+        
         if (formData != undefined) {
             setFirstname(formData.firstname);
             setLastname(formData.lastname);
@@ -218,12 +218,8 @@ export const StudentCertificate = () => {
 
             setotherError('Location of campus is required');
         } else {
-            const regs = /^[a-zA-Z\s]+$/;
             
-            if (!regs.test(other)) {
-                setotherError('Location of campus should contain only letters');
-            }
-            return regs.test(other);
+            return true;
 
         }
     }
@@ -271,11 +267,9 @@ export const StudentCertificate = () => {
 
             setProgramError('Program name is required');
         } else {
-            const regs = /^[a-zA-Z\s]+$/;
-            if (!regs.test(programname)) {
-                setProgramError('Program name should contain only letters');
-            }
-            return regs.test(programname);
+           return true;
+
+
 
         }
     }
@@ -342,13 +336,13 @@ export const StudentCertificate = () => {
 
 
 
-                                <input type="text" placeholder="FirstName" className={"form-control shadow"}value={firstname}  onChange={(event) => setFirstname(event.target.value)} onFocus={handleFirstNameFocus}
+                                <input type="text" placeholder="FirstName" id="firstname" className={"form-control shadow"}value={firstname}  onChange={(event) => setFirstname(event.target.value)} onFocus={handleFirstNameFocus}
                                 />
                                 {firstnameError && <span style={{ color: 'red' }}>{firstnameError}</span>}
                             </div>
 
                             <div className="form-group col-md-4 m-2">
-                                <input type="text" className="form-control shadow" placeholder="LastName"  value={lastname} onChange={(event) => setLastname(event.target.value)} onFocus={handleLastNameFocus} />
+                                <input  type="text" className="form-control shadow" id="lastname" placeholder="LastName"  value={lastname} onChange={(event) => setLastname(event.target.value)} onFocus={handleLastNameFocus} />
                                 {lastnameError && <span style={{ color: 'red' }}>{lastnameError}</span>}
                             </div>
                         </div>
@@ -356,13 +350,20 @@ export const StudentCertificate = () => {
                     <div class="row">
                         <div className='d-flex justify-content-center'>
                             <div className="form-group col-md-4 m-2">
-                                <input type="text" className="form-control shadow" placeholder="FatherName" value={fathername}  onChange={(event) => setFathername(event.target.value)} onFocus={handlefatherNameFocus} />
+                                <input type="text" className="form-control shadow"  placeholder="FatherName" value={fathername}  onChange={(event) => setFathername(event.target.value)} onFocus={handlefatherNameFocus} />
                                 {fathernameError && <span style={{ color: 'red' }}>{fathernameError}</span>}
                             </div>
                             <div className="form-group col-md-4 m-2">
-                                <input type="text" className="form-control shadow" placeholder="Other Information" value={other}  onChange={(event) => setOther(event.target.value)} onFocus={handleOtherinfoFocus} />
-                                {otherError && <span style={{ color: 'red' }}>{otherError}</span>}
-                            </div>
+  <select className="form-control shadow" onChange={(event) => setOther(event.target.value)} onFocus={handleOtherinfoFocus}>
+    <option value="">Select Campus</option>
+    <option value="Karachi">Karachi</option>
+    <option value="Lahore">Lahore</option>
+    <option value="Islamabad">Islamabad</option>
+    {/* Add more options as needed */}
+  </select>
+  {otherError && <span style={{ color: 'red' }}>{otherError}</span>}
+</div>
+
                         </div>
                     </div>
                     <div class="row">
@@ -380,10 +381,19 @@ export const StudentCertificate = () => {
                     </div>
                     <div class="row">
                         <div className='d-flex justify-content-center'>
-                            <div className="form-group col-md-4 m-2">
-                                <input type="text" className="form-control shadow" placeholder="Program"  value={program} onChange={(event) => setProgram(event.target.value)} onFocus={handleprogramFocus} />
-                                {programError && <span style={{ color: 'red' }}>{programError}</span>}
-                            </div>
+                          
+                        <div className="form-group col-md-4 m-2">
+  <select className="form-control shadow" onChange={(event) => setProgram(event.target.value)} onFocus={handleprogramFocus} >
+    <option value="" >Select Program</option>
+    <option value="Bachlors of Software Engineering">Bachlors of Software Engineering</option>
+    <option value="Bachlors of Electrical Engineering">Bachlors of Electrical Engineering</option>
+    <option value="Bachlors of Mechanical Engineering">Bachlors of Mechanical Engineering</option>
+    <option value="Bachlors of Computer Engineering">Bachlors of Computer Engineering</option>
+    {/* Add more programs as needed */}
+  </select>
+  {programError && <span style={{ color: 'red' }}>{programError}</span>}
+</div>
+
                             <div className="form-group col-md-4 m-2">
                                 <input type="text" className="form-control shadow" placeholder="Batch #" value={batch} onChange={(event) => setBatch(event.target.value)} onFocus={handlebatchFocus} />
                                 {batchError && <span style={{ color: 'red' }}>{batchError}</span>}
