@@ -4,7 +4,8 @@ const pdf = require('html-pdf');
 const cors= require('cors');
 const bodyParser = require('body-parser');
 
-const {certificateDoc} = require('./documents');
+const certificateDoc = require('./documents');
+
 
 
 const app = express();
@@ -17,8 +18,8 @@ app.use(bodyParser.json());
 //POST - Generating pdf and fetching the data
 app.post('/create-pdf',async (req,res)=>{
     const { firstname, lastname, program, cgpa, dateofgraduation } = req.body;
-    let temp = certificateDoc({ firstname, lastname, program, cgpa, dateofgraduation}).toString()
-    //let temp = certificateDoc(req.body.state).toString()
+    let temp = certificateDoc(firstname, lastname, program, cgpa, dateofgraduation)
+    //let temp = certificateDoc(req.body).toString()
     console.log(temp)
     console.log('create pdf log');
     pdf.create(temp,{}).toFile('result.pdf',(err)=>{

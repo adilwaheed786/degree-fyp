@@ -20,23 +20,7 @@ export const Certificate = () => {
   console.log(formData)
   
   const navigate = useNavigate()
-  const createAndDownloadpdf =  () =>{
-    debugger
-     axios.post('/create-pdf')
-     .then(() => axios.get('/fetch-pdf', {responseType: 'blob'}))
-     .then((res) =>{
-       const pdfBlob = new Blob([res.data],{type:'application/pdf'});
-       saveAs(pdfBlob,'newpdf.pdf')
-       
-       console.log('yahan par method hai')
- 
-     })
-     .catch((err) => {
-       console.log(err);
-     });
-   }
- 
-
+  
    // const queryParams = new URLSearchParams(location.search);
    const {
     firstname,
@@ -54,6 +38,25 @@ export const Certificate = () => {
 
   console.log('hey')
   console.log(firstname)
+  const createAndDownloadpdf =  () =>{
+    
+     axios.post('/create-pdf',{ firstname,
+      lastname,
+      program,
+      dateofgraduation,
+      cgpa })
+     .then(() => axios.get('/fetch-pdf', {responseType: 'blob'}))
+     .then((res) =>{
+       const pdfBlob = new Blob([res.data],{type:'application/pdf'});
+       saveAs(pdfBlob,'newpdf.pdf')
+       
+       console.log('yahan par method hai')
+ 
+     })
+     .catch((err) => {
+       console.log(err);
+     });
+   }
   // const lastname = queryParams.get('lastname');
   // const fathername = queryParams.get('fathername');
   // const enrollment = queryParams.get('enrollment');
