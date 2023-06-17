@@ -29,6 +29,7 @@ export const Certificate = () => {
     registration,
     program,
     batch,
+    other,
     dateofgraduation,
     cgpa,
   } = formData;
@@ -47,14 +48,14 @@ export const Certificate = () => {
         );
   
         // Get the total number of stored certificates
-        const totalCertificates = await contract.methods.getTotalCertificates().call();
+        const totalCertificates = await contract.methods.getTotalCertificatesCount().call();
         
         console.log('Stored data from Ganache:');
         console.log(totalCertificates);
 
         const certificateDataArray = [];
         for (let i = 0; i < totalCertificates; i++) {
-          const certificateData = await contract.methods.getCertificateData(i).call();
+          const certificateData = await contract.methods.getCertificateDataByIndex(i).call();
           certificateDataArray.push(certificateData);
         }
 
@@ -94,61 +95,93 @@ export const Certificate = () => {
           StudentCertificateContract.abi,
           contractAddress
         );
-  
+        const uniqueId = web3.utils.asciiToHex("65308fec6-0d26-14ee-ba56-0287ac126rt2");
+        // Truncate or pad the uniqueId to 32 bytes
+        const truncatedUniqueId = uniqueId.slice(0, 66); // Example: Truncate to 66 characters
+
         // Call the contract's addStudentDetails function
-        const transaction= await contract.methods.addStudentDetails(
+        const transact= await contract.methods.addStudentDetails(
+          truncatedUniqueId,
           firstname,
           lastname,
           program,
+          fathername,
+          other,
+          enrollment,
+          registration,
+          batch,
           cgpa,
           dateofgraduation
-        ).send({ from: fromAddress });
-        if (transaction.transactionHash) {
-        console.log('Student details added to the blockchain.');
-        const Eth = await web3.eth.getTransaction(transaction.transactionHash);
-        const block = await web3.eth.getBlock(transaction.blockHash);
-        console.log(Eth) ;
-        console.log(block) ;
-        console.log('Transaction ID:', Eth.hash);
-        console.log('Block Number:', Eth.blockNumber);
-        console.log('Timestamp:', block.timestamp);
-        try {
-          const data = {
-            uniqueId:'12',
-            transactionHash: Eth.hash,
-            blockNumber: Eth.blockNumber,
-            blockHash:Eth.blockHash,
-            timestamp: block.timestamp
-          };
-          console.log(data)
-          // Make POST request to the server endpoint
-          const response = await axios.post('/saveData', data);
-          console.log(response.data); // Log the response
-      
-          // Handle the response as needed
-          // ...
-        } catch (error) {
-          console.error('Error:', error);
-          // Handle the error
-          // ...
+        ).send({ from: fromAddress })
+        .on('error', (error) => {
+          if (error.message.includes("Certificate with this ID already exists")) {
+              alert("A certificate with this ID already exists. Please choose a different ID.");
+          }
+          else if (error.message.includes("Duplicate enrollment number")) {
+            alert("A certificate with this enrollment number already exists. Please choose a different enrollment number.");
         }
-      } 
-        axios.post('/create-pdf',{ firstname,
-          lastname,
-          program,
-          dateofgraduation,
-          cgpa })
-         .then(() => axios.get('/fetch-pdf', {responseType: 'blob'}))
-         .then((res) =>{
-           const pdfBlob = new Blob([res.data],{type:'application/pdf'});
-           saveAs(pdfBlob,'newpdf.pdf')
+        else if (error.message.includes("Duplicate registration number")) {
+          alert("A certificate with this registration number already exists. Please choose a different registration number.");
+      }
+           else {
+              // Handle other errors or display a generic error message
+              console.error(error);
+              alert("An error occurred while adding the student details.");
+          }
+      })
+      .then(async (transaction) => {
+        console.log(transaction)
+          // Transaction successful, handle the receipt
+          if (transaction.transactionHash) {
+            console.log('Student details added to the blockchain.');
+             // Get the total number of stored certificates
+             const certificate = await contract.methods.getCertificateDataByUUID(truncatedUniqueId).call();
+             console.log(certificate) ;
+            const Eth = await web3.eth.getTransaction(transaction.transactionHash);
+            const block = await web3.eth.getBlock(transaction.blockHash);
+            console.log(Eth) ;
+            console.log(block) ;
+            console.log('Transaction ID:', Eth.hash);
+            console.log('Block Number:', Eth.blockNumber);
+            console.log('Timestamp:', block.timestamp);
+            try {
+              const data = {
+                uniqueId:'12',
+                transactionHash: Eth.hash,
+                blockNumber: Eth.blockNumber,
+                blockHash:Eth.blockHash,
+                timestamp: block.timestamp
+              };
+              console.log(data)
+    
+              // Make POST request to the server endpoint
+              const response = await axios.post('/saveData', data);
+              console.log(response.data); // Log the response
+              axios.post('/create-pdf',{ firstname,
+                lastname,
+                program,
+                dateofgraduation,
+                cgpa })
+               .then(() => axios.get('/fetch-pdf', {responseType: 'blob'}))
+               .then((res) =>{
+                 const pdfBlob = new Blob([res.data],{type:'application/pdf'});
+                 saveAs(pdfBlob,'newpdf.pdf')
+                 
+                 console.log('pdf ban gai hai aur download hau gai hai')
            
-           console.log('pdf ban gai hai aur download hau gai hai')
-     
-         })
-         .catch((err) => {
-           console.log(err);
-         });
+               })
+               .catch((err) => {
+                 console.log(err);
+               });
+            } catch (error) {
+              console.error('Error:', error);
+              // Handle the error
+              // ...
+            }
+          }
+      });;
+         
+      
       } else {
         console.error('Web3 provider not found. Make sure you have MetaMask installed.');
       }

@@ -44,9 +44,10 @@ app.get('/fetch-pdf',(req,res) =>{
 
 //MongoDb For Save Transaction Data Into Db
 // Connection URL
-//const url = 'mongodb://localhost:27017';
-//const url = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}/${process.env.DB_NAME}?retryWrites=true&w=majority`;
-const url =`mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.lw3ikvg.mongodb.net/`;
+//For Local Db
+const url = 'mongodb://localhost:27017';
+//For Cloud Atlas Db
+//const url =`mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.lw3ikvg.mongodb.net/`;
 // Database Name
 const dbName = process.env.DB_NAME;
 
