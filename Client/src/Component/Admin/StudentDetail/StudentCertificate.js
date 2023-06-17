@@ -354,7 +354,7 @@ export const StudentCertificate = () => {
                                 {fathernameError && <span style={{ color: 'red' }}>{fathernameError}</span>}
                             </div>
                             <div className="form-group col-md-4 m-2">
-  <select className="form-control shadow" onChange={(event) => setOther(event.target.value)} onFocus={handleOtherinfoFocus}>
+  <select className="form-control shadow" value={other}onChange={(event) => setOther(event.target.value)} onFocus={handleOtherinfoFocus}>
     <option value="">Select Campus</option>
     <option value="Karachi">Karachi</option>
     <option value="Lahore">Lahore</option>
@@ -383,7 +383,7 @@ export const StudentCertificate = () => {
                         <div className='d-flex justify-content-center'>
                           
                         <div className="form-group col-md-4 m-2">
-  <select className="form-control shadow" onChange={(event) => setProgram(event.target.value)} onFocus={handleprogramFocus} >
+  <select className="form-control shadow"value={program} onChange={(event) => setProgram(event.target.value)} onFocus={handleprogramFocus} >
     <option value="" >Select Program</option>
     <option value="Bachlors of Software Engineering">Bachlors of Software Engineering</option>
     <option value="Bachlors of Electrical Engineering">Bachlors of Electrical Engineering</option>
