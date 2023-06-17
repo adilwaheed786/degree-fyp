@@ -274,7 +274,7 @@ export const Certificate = () => {
                 maxheight: "100px",
                 width: "10%",
               }} />
-              <p>SIGNATURE:</p>
+              {/* <p>SIGNATURE:</p> */}
             </div>
 
 
