@@ -4,12 +4,14 @@ import s4 from '../images/s4.png'
 import logo from '../images/logo.png'
 import QR from '../images/QR.png'
 import "../Css/certificate_design.css"
-import { useState } from 'react'
+import { v4 as uuidv4 } from 'uuid';
+import { useState,useEffect } from 'react'
 import { useLocation,useNavigate} from 'react-router-dom';
 import axios from 'axios'
 import saveAs from 'file-saver'
 import Web3 from 'web3';
 import StudentCertificateContract from '../build/contracts/StudentCertificateContract.json';
+import QRCode from 'qrcode.react';
 
 
 export const Certificate = () => {
@@ -19,8 +21,8 @@ export const Certificate = () => {
   const navigate = useNavigate()
   const[updatedData, setUpdatedData] = useState(formData);
   const [storedData, setStoredData] = useState(null);
-
-  // const queryParams = new URLSearchParams(location.search);
+  const [uniqueId, setUniqueId] = useState('');
+    // const queryParams = new URLSearchParams(location.search);
   const {
     firstname,
     lastname,
@@ -32,7 +34,18 @@ export const Certificate = () => {
     dateofgraduation,
     cgpa,
   } = formData;
+  
+  useEffect(() => {
+    const generateUniqueId = async () => {
+      const id = uuidv4();
+      setUniqueId(id);
 
+      // Generate QR code using the unique ID
+      
+    };
+
+    generateUniqueId();
+  }, []);
   const handleGetStoredData = async () => {
     try {
       if (window.ethereum) {
@@ -205,15 +218,17 @@ export const Certificate = () => {
             </div>
 
 
-            <div className='sealdiv'>
+            <div className='sealdiv' style={{display: 'flex', justifyContent:"center", alignItems: 'center'}}>
 
-              <img src={QR} alt="" style={{
+            <QRCode value={uniqueId} style={{
                 maxwidth: "100px",
                 height: "auto",
                 maxheight: "50px",
                 width: "5%",
-              }} />
-              <p>UNIQUE ID:223431RETERTY6Y67U6778IWDWWRDGHY34</p>
+              
+              }}/>
+
+            <p>UNIQUE ID: {uniqueId}</p>
             </div>
 
           </div>
