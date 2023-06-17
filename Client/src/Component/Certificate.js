@@ -159,7 +159,7 @@ export const Certificate = () => {
             console.log('Timestamp:', block.timestamp);
             try {
               const data = {
-                uniqueId:'12',
+                uniqueId:uniqueId,
                 transactionHash: Eth.hash,
                 blockNumber: Eth.blockNumber,
                 blockHash:Eth.blockHash,
