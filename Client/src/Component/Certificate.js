@@ -103,9 +103,36 @@ export const Certificate = () => {
           cgpa,
           dateofgraduation
         ).send({ from: fromAddress });
-        console.log(transaction) ; 
+        if (transaction.transactionHash) {
         console.log('Student details added to the blockchain.');
-
+        const Eth = await web3.eth.getTransaction(transaction.transactionHash);
+        const block = await web3.eth.getBlock(transaction.blockHash);
+        console.log(Eth) ;
+        console.log(block) ;
+        console.log('Transaction ID:', Eth.hash);
+        console.log('Block Number:', Eth.blockNumber);
+        console.log('Timestamp:', block.timestamp);
+        try {
+          const data = {
+            uniqueId:'12',
+            transactionHash: Eth.hash,
+            blockNumber: Eth.blockNumber,
+            blockHash:Eth.blockHash,
+            timestamp: block.timestamp
+          };
+          console.log(data)
+          // Make POST request to the server endpoint
+          const response = await axios.post('/saveData', data);
+          console.log(response.data); // Log the response
+      
+          // Handle the response as needed
+          // ...
+        } catch (error) {
+          console.error('Error:', error);
+          // Handle the error
+          // ...
+        }
+      } 
         axios.post('/create-pdf',{ firstname,
           lastname,
           program,
