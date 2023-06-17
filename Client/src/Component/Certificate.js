@@ -108,9 +108,9 @@ export const Certificate = () => {
           StudentCertificateContract.abi,
           contractAddress
         );
-        const uniqueId = web3.utils.asciiToHex("65308fec6-0d26-14ee-ba56-0287ac126rt2");
+        const Certificate_UniqueId = web3.utils.asciiToHex(uniqueId);
         // Truncate or pad the uniqueId to 32 bytes
-        const truncatedUniqueId = uniqueId.slice(0, 66); // Example: Truncate to 66 characters
+        const truncatedUniqueId = Certificate_UniqueId.slice(0, 66); // Example: Truncate to 66 characters
 
         // Call the contract's addStudentDetails function
         const transact= await contract.methods.addStudentDetails(
