@@ -33,7 +33,7 @@ export const Certificate = () => {
     batch,
     other,
     dateofgraduation,
-    cgpa,
+    cgpa,  
   } = formData;
   
   useEffect(() => {
@@ -168,13 +168,15 @@ export const Certificate = () => {
               console.log(data)
     
               // Make POST request to the server endpoint
-              const response = await axios.post('/saveData', data);
-              console.log(response.data); // Log the response
+              // const response = await axios.post('/saveData', data);
+              // console.log(response.data); // Log the response
               axios.post('/create-pdf',{ firstname,
                 lastname,
                 program,
                 dateofgraduation,
-                cgpa })
+                cgpa,
+                uniqueId
+               })
                .then(() => axios.get('/fetch-pdf', {responseType: 'blob'}))
                .then((res) =>{
                  const pdfBlob = new Blob([res.data],{type:'application/pdf'});
