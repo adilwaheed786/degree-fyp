@@ -12,7 +12,7 @@ import { StudentCertificate } from './Component/Admin/StudentDetail/StudentCerti
 import { Verify } from './Component/VerificationPage/Verify'
 import "./Css/certificate_design.css"
 import Particle from './Component/Particle'
-
+import CertificateList from './Component/Admin/Certificates/CertificateList';
 
 export const App = () => {
   return (
@@ -28,6 +28,7 @@ export const App = () => {
             <Route path="/confirm" element={<Certificate />} />           
             <Route path="/certificate_details" element={<Certificatedetails />} />
             <Route path="/verify" element={<Verify />} />
+            <Route path="/CertificatesList" element={<CertificateList />} />
             <Route path="*" element={<Homepage />} />
           </Route>
            
