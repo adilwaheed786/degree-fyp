@@ -11,7 +11,7 @@ async function generateQRCode(value) {
   
 module.exports =async  (firstname, lastname, program, cgpa, dateofgraduation,uniqueId) =>{
     const qrCodeData = await generateQRCode(uniqueId);
-    //const qrCodeDataUrl = `data:image/png;base64,${qrCodeData}`;
+    const qrCodeDataUrl = `data:image/png;base64,${qrCodeData}`;
    // console.log("new" + qrCodeData);
   return `
   <!DOCTYPE html>
@@ -75,7 +75,8 @@ module.exports =async  (firstname, lastname, program, cgpa, dateofgraduation,uni
                       <p style=" font-size:25px;margin-left:30%">SIGNATURE:</p>
                   </div>
                   <div class="sealdiv">
-                  <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJQAAACUCAYAAAB1PADUAAAAAklEQVR4AewaftIAAATcSURBVO3BQY4bSRAEwfAC//9l3znmqYBGJ2clIczwR6qWnFQtOqladFK16KRq0UnVopOqRSdVi06qFp1ULTqpWnRSteikatFJ1aKTqkUnVYs+eQnIb1JzA2RScwNkUnMD5EbNBOQJNROQ36TmjZOqRSdVi06qFn2yTM0mIE+oeULNE2qeUHMD5Ak1m4BsOqladFK16KRq0SdfBuQJNU8AmdRMQG7U3ACZ1ExAJjVPqHkDyBNqvumkatFJ1aKTqkWf/GOA3Kh5Qs2NmgnIG2r+ZidVi06qFp1ULfrkH6dmArJJzRtq/iUnVYtOqhadVC365MvU/J+A3KiZgLyh5gkgk5on1PxJTqoWnVQtOqla9MkyIP8nNROQSc0EZFIzAZnUTEAmNROQSc0bQP5kJ1WLTqoWnVQt+uQlNX8yNROQGyCTmjfUTEAmNTdq/iYnVYtOqhadVC3CH3kByKRmArJJzQ2QSc0NkEnNBGRSMwF5Qs0EZFIzAdmk5ptOqhadVC06qVqEP/KLgExqJiCTmgnIN6m5ATKpeQLIpOYGyKRmAnKj5gbIpOaNk6pFJ1WLTqoWffISkEnNE0BugDyh5gbIJiBPqJmA3KiZgDwB5EbNppOqRSdVi06qFn3yh1HzBpBJzY2aGyBPqHlCzQRkAjKpuQEyqflNJ1WLTqoWnVQtwh/5RUC+Sc0EZFIzAZnU3AB5Q80NkEnNBGRScwPkRs2mk6pFJ1WLTqoW4Y+8AGRSMwGZ1LwB5A01E5BNam6AvKFmAjKpuQFyo+aNk6pFJ1WLTqoW4Y/8IiCTmgnIjZobIJOaCcikZgJyo2YCcqPmBsikZgKySc03nVQtOqladFK16JOXgExqNqmZgPwmNU+o2aRmAnKj5gbIjZo3TqoWnVQtOqlahD+yCMikZgLyhppNQCY1E5BvUjMBmdRMQCY1E5AbNd90UrXopGrRSdWiT14CMqmZgExqJiA3ap4AMql5Q80EZFLzBJAbNROQSc0EZFLzBJBJzRsnVYtOqhadVC365MvU3KiZgExA3gDyfwIyqZmATGomNROQSc0NkBs1m06qFp1ULTqpWvTJlwG5UTOpuQEyqbkB8gaQ3wRkUjOpmYDcqJmAfNNJ1aKTqkUnVYs++TI1N0AmNROQSc0E5JvUTEAmIN8E5Ak1E5BJzTedVC06qVp0UrUIf+QvBmRScwNkUjMBeULNG0AmNU8AuVEzAblR88ZJ1aKTqkUnVYs+eQnIb1IzqbkB8puATGomIE8AmdTcqLlR800nVYtOqhadVC36ZJmaTUBugNyouQFyo2YCMgGZ1ExA3lDzTUAmNW+cVC06qVp0UrXoky8D8oSaTUCeUDMBuVEzAZnU3ACZgLwB5EbNN51ULTqpWnRSteiTf5yaGyATkEnNDZBJzQTkRs0EZFIzAZnUvKFm00nVopOqRSdViz75x6i5ATKpeQLIpGYC8oaaCcikZgLyhppNJ1WLTqoWnVQt+uTL1HyTmhsgN0AmNW+oeQLIpGZSMwG5UXMD5JtOqhadVC06qVr0yTIgvwnIE2pugExqJjUTkDfUTEAmNTdqboBMar7ppGrRSdWik6pF+CNVS06qFp1ULTqpWnRSteikatFJ1aKTqkUnVYtOqhadVC06qVp0UrXopGrRSdWik6pF/wEKZ1MW9eabzwAAAABJRU5ErkJggg==" alt=""
+                  
+                  <img src="${qrCodeData}" alt=""
                   style="display: inline; max-width: 100px; height: auto; width: 20%;" />
                       
                       <p style="font-size:25px">UNIQUE ID: ${uniqueId}</p>
