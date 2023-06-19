@@ -42,7 +42,7 @@ app.post('/create-pdf',async (req,res)=>{
       
       console.log(req)
       console.log(res)
-      let temp = certificateDoc(firstname, lastname, program, cgpa, dateofgraduation,uniqueId)
+      let temp =await  certificateDoc(firstname, lastname, program, cgpa, dateofgraduation,uniqueId)
       //let temp = certificateDoc(req.body).toString()
       const options = {
           format: 'A4', // Set the PDF format to A4 size
@@ -59,7 +59,13 @@ app.post('/create-pdf',async (req,res)=>{
               res.send(Promise.resolve());
           }
       })
-
+      // pdf.create(temp, options).toFile('result.pdf', (error, result) => {
+      //   if (error) {
+      //     console.error('Error generating PDF:', error);
+      //   } else {
+      //     console.log('PDF generated successfully:', result);
+      //   }
+      // });
   }
   catch (error) {
       console.error('Error generating PDF:', error);
@@ -72,7 +78,7 @@ app.post('/create-pdf',async (req,res)=>{
 
 
 //GET -  Send the Generated pdf TO THE client
-app.get('/fetch-pdf',(req,res) =>{
+app.get('/fetch-pdf',async (req,res) =>{
     console.log('fetch pdf log');
     res.sendFile(`${__dirname}/result.pdf`)
     
@@ -81,7 +87,7 @@ app.get('/fetch-pdf',(req,res) =>{
 //MongoDb For Save Transaction Data Into Db
 // Connection URL
 //For Local Db
-const url = 'mongodb://localhost:27017';
+const url = 'mongodb://127.0.0.1:27017';
 //For Cloud Atlas Db
 //const url =`mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.lw3ikvg.mongodb.net/`;
 // Database Name

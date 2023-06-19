@@ -168,26 +168,26 @@ export const Certificate = () => {
               console.log(data)
     
               // Make POST request to the server endpoint
-              // const response = await axios.post('/saveData', data);
-              // console.log(response.data); // Log the response
-              axios.post('/create-pdf',{ firstname,
+               const response = await axios.post('/saveData', data);
+               console.log(response.data); // Log the response
+              await axios.post('/create-pdf',{ firstname,
                 lastname,
                 program,
                 dateofgraduation,
                 cgpa,
                 uniqueId
                })
-               .then(() => axios.get('/fetch-pdf', {responseType: 'blob'}))
-               .then((res) =>{
+               console.log('create pdf ki Api')
+              //  .then(() => axios.get('/fetch-pdf', {responseType: 'blob'}))
+              const res = await axios.get('/fetch-pdf', { responseType: 'blob' });
+              //  .then((res) =>{
                  const pdfBlob = new Blob([res.data],{type:'application/pdf'});
                  saveAs(pdfBlob,'newpdf.pdf')
                  
                  console.log('pdf ban gai hai aur download hau gai hai')
            
-               })
-               .catch((err) => {
-                 console.log(err);
-               });
+              //  })
+               
             } catch (error) {
               console.error('Error:', error);
               // Handle the error
@@ -210,24 +210,8 @@ export const Certificate = () => {
     navigate('/student-certificate', { state: updatedData });
   };
 
-  const getAbbreviation = (text) => {
-    const prepositions = ['of', 'in', 'on', 'at', 'for', 'to', 'by', 'with'];
 
-    // Split the text into words
-    const words = text.split(' ');
 
-    // Filter out prepositions
-    const filteredWords = words.filter((word) => !prepositions.includes(word.toLowerCase()));
-
-    // Map each remaining word to its first letter and capitalize it
-    const abbreviation = filteredWords
-      .map((word) => word.charAt(0).toUpperCase())
-      .join('');
-
-    return abbreviation;
-  };
-
-  
   return (
     <div>
       {/* ------heading with some text code start */}
