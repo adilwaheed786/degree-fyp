@@ -61,7 +61,7 @@ body{
     box-shadow:1px  1px 3px;
     margin:15px;
     width: 70%;
-    
+   
 }
 
 .text3
@@ -111,7 +111,7 @@ h3,h2,p
 @media  (min-width:336px) and (max-width: 923px) 
 {
     .text,.text1,.text3{
-        width: 110%;
+        width: 90%;
         padding:1px;
         margin: 10px;
     }
