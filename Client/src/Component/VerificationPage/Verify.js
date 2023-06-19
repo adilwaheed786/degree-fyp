@@ -1,21 +1,12 @@
-
 import React, { useState } from 'react';
-import { Tabs } from './Tabheader.js'
+import { Tabs } from './Tabheader.js';
+import { Link } from 'react-router-dom';
+
 import './verification.css'
-
-// const HeadingDisplay= ({heading}) =>{
-
-//     return(
-//         <h2 key={heading.id}>{heading.text}</h2>
-//     )
-// }
-
 
 export const Verify = () => {
     const [ShowTabs, setShowTabs] = useState(Tabs[0]);
-    // const [value, setValue] = useState(0);
-    // setShowTabs(Tabs[value])
-
+    const [inputValue, setInputValue] = useState('');
 
     return (
         <div>
@@ -46,9 +37,9 @@ export const Verify = () => {
 
                                         )
                                     })
-
                                 }
-                                <h7>Upload Document</h7>
+                                    <h7>Upload Document</h7>
+                                
                             </div>
                         </div>
                     </div>
@@ -59,9 +50,7 @@ export const Verify = () => {
                         </div>
                         {ShowTabs.component}
                     </div>
-                    <div className='col-1'>
-
-                    </div>
+                    <div className='col-1'></div>
                 </div>
             </div>
         </div>

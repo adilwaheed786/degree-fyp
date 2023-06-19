@@ -98,6 +98,41 @@ const collectionName = process.env.DB_COLLECTION_NAME;
 
 // Middleware to parse JSON body
 app.use(express.json());
+// Endpoint to retrieve data by unique ID
+app.get('/getdata/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    // Connect to MongoDB
+    const client = await MongoClient.connect(url);
+    console.log('Connected to MongoDB');
+    const db = client.db(dbName);
+
+    // Select the collection
+    const collection = db.collection(collectionName);
+    console.log('Fetching data for ID:', id);
+    const result = await collection.findOne({ uniqueId: id });
+
+    // Close the MongoDB connection
+    client.close();
+    console.log('Disconnected from MongoDB');
+
+    // Check if data exists
+    if (!result) {
+      console.log('Data not found for ID:', id);
+      return res.status(404).json({ error: 'Data not found' });
+    }
+
+    // Log the retrieved data
+    console.log('Retrieved data:', result);
+
+    // Return the data
+    res.json(result);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'An error occurred' });
+  }
+});
 
 
 
