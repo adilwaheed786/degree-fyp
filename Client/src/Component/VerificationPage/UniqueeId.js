@@ -79,8 +79,8 @@ const UniqueeId = () => {
       // }
   
       // Redirect to the CertificateDetails page with the certificate data
-      navigate(`/certificate_details`, { state: { data: result, uniqueId: inputValue } });
-  
+      navigate(`/certificate_details/${inputValue}`, { state: { data: result, uniqueId: inputValue } });
+   
     } catch (error) {
       console.log(error);
       window.alert('Invalid ID'); // Show alert message for other errors
@@ -98,17 +98,18 @@ const UniqueeId = () => {
       <div className='row'>
         <div className='col-12'>
           <form onSubmit={handleSubmit}>
+      
             <div className='UID-div'>
               <div className='label-div'>
                 <label className='id-label'>Unique ID</label>
               </div>
 
               <input
-                type='text'
-                className='Id-input'
-                value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
-              />
+        type="text"
+        className='Id-input'
+        value={inputValue}
+        onChange={(e) => setInputValue(e.target.value)}
+      />
               {error && inputValue.length <= 0 ? (
                 <label className='errorMessage'>Unique Id Can't be empty</label>
               ) : (

@@ -4,6 +4,7 @@ import "../Css/certificate_details.css";
 import logo from '../images/logo.png';
 import Certificate from './Certificate';
 import axios from 'axios';
+import UniqueeId from './VerificationPage/UniqueeId';
 import { useLocation } from 'react-router-dom';
 
 export const Certificatedetails = () => {
