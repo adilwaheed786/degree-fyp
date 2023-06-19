@@ -1,5 +1,6 @@
 const express = require('express');
 // const bodyParser = require('body-parser');
+const QRCode = require('qrcode');
 const pdf = require('html-pdf');
 const cors= require('cors');
 const bodyParser = require('body-parser');
@@ -15,32 +16,69 @@ app.use(cors());
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 
+// Generate QR Code Data URL
+const generateQRCodeDataUrl = async (data) => {
+  try {
+    const dataUrl = await QRCode.toDataURL(data);
+    return dataUrl;
+  } catch (error) {
+    console.error('Error generating QR code:', error);
+    return null;
+  }
+};
+
+
+
+// const qrCodeData = QRCode.toString(uniqueId, {
+//   errorCorrectionLevel: 'H',
+//   type: 'svg'
+// })
+
 //POST - Generating pdf and fetching the data
 app.post('/create-pdf',async (req,res)=>{
-    console.log('yai mai post ki API mai aai hoon')
-    const { firstname, lastname, program, cgpa, dateofgraduation } = req.body;
-    console.log(req)
-    console.log(res)
-    let temp = certificateDoc(firstname, lastname, program, cgpa, dateofgraduation)
-    //let temp = certificateDoc(req.body).toString()
-    console.log(temp)
-    console.log('create pdf log');
-    pdf.create(temp,{}).toFile('result.pdf',(err)=>{
-        if(err){
-            res.send(Promise.reject())
-            
-        }else{
-            res.send(Promise.resolve());
-        }
-    })
+  try{
+      console.log('yai mai post ki API mai aai hoon')
+      const { firstname, lastname, program, cgpa, dateofgraduation,uniqueId} = req.body;
+      
+      console.log(req)
+      console.log(res)
+      let temp =await  certificateDoc(firstname, lastname, program, cgpa, dateofgraduation,uniqueId)
+      //let temp = certificateDoc(req.body).toString()
+      const options = {
+          format: 'A4', // Set the PDF format to A4 size
+          // Add any additional options as needed
+        };
+      
+      console.log(temp)
+      console.log('create pdf log');
+      pdf.create(temp,options).toFile('result.pdf',(err)=>{
+          if(err){
+              res.send(Promise.reject())
+              
+          }else{
+              res.send(Promise.resolve());
+          }
+      })
+      // pdf.create(temp, options).toFile('result.pdf', (error, result) => {
+      //   if (error) {
+      //     console.error('Error generating PDF:', error);
+      //   } else {
+      //     console.log('PDF generated successfully:', result);
+      //   }
+      // });
+  }
+  catch (error) {
+      console.error('Error generating PDF:', error);
+      res.status(500).send('Error generating PDF');
+    }
+
 })
 
 
 
 
-
 //GET -  Send the Generated pdf TO THE client
-app.get('/fetch-pdf',(req,res) =>{
+app.get('/fetch-pdf',async (req,res) =>{
     console.log('fetch pdf log');
     res.sendFile(`${__dirname}/result.pdf`)
     
@@ -95,6 +133,9 @@ app.get('/getdata/:id', async (req, res) => {
     res.status(500).json({ error: 'An error occurred' });
   }
 });
+
+
+
 
 // Endpoint to handle saving data
 app.post('/saveData', async (req, res) => {
