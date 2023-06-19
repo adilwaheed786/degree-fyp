@@ -47,6 +47,19 @@ export const Certificate = () => {
 
     generateUniqueId();
   }, []);
+  function capitalize(str) {
+    // Split the string into an array of words
+    const words = str.toLowerCase().split(' ');
+  
+    // Capitalize the first letter of each word
+    const capitalizedWords = words.map(word => word.charAt(0).toUpperCase() + word.slice(1));
+  
+    // Join the capitalized words back into a string
+    const capitalizedStr = capitalizedWords.join(' ');
+  
+    return capitalizedStr;
+  }
+  
   const handleGetStoredData = async () => {
     try {
       if (window.ethereum) {
@@ -115,10 +128,10 @@ export const Certificate = () => {
         // Call the contract's addStudentDetails function
         const transact= await contract.methods.addStudentDetails(
           truncatedUniqueId,
-          firstname,
-          lastname,
+          capitalize(firstname),
+          capitalize(lastname),
           program,
-          fathername,
+          capitalize(fathername),
           other,
           enrollment,
           registration,
