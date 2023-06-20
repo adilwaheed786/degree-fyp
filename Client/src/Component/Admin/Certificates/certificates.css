@@ -28,4 +28,17 @@
   .certificate-info {
     margin: 5px 0;
   }
+
+  .loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .loading-text {
+    font-size: 24px;
+    font-weight: bold;
+    color: #001273;
+  }
   
