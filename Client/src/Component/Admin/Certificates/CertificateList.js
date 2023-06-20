@@ -1,14 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import Web3 from 'web3';
 import './certificates.css'
+
 import StudentCertificateContract from '../../../build/contracts/StudentCertificateContract.json';
 function CertificateList() {
   const [certificates, setCertificates] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     async function fetchCertificates() {
       try {
-        const web3 = new Web3(window.ethereum);
+        //const web3 = new Web3(window.ethereum);
+       // Connect to the local Ethereum network provided by Ganache
+        const ganacheUrl = 'http://localhost:7545';
+        const web3 = new Web3(ganacheUrl);
         const networkId = await web3.eth.net.getId();
         const deployedNetwork = StudentCertificateContract.networks[networkId];
         const contractAddress = deployedNetwork.address;
@@ -17,30 +23,44 @@ function CertificateList() {
           StudentCertificateContract.abi,
           contractAddress
         );
+        setLoading(true); // Show the loading screen
         // Assuming you have already connected to the Ethereum network and instantiated the contract object
         const certificateList = await contract.methods.getAllCertificates().call();
        // const totalCertificates = await contract.methods.getTotalCertificatesCount().call();
         console.log(certificateList);
         setCertificates(certificateList);
+        setLoading(false); // Hide the loading screen
       } catch (error) {
+        setLoading(false);
         console.log('Error fetching certificates:', error);
+        setError('An error occurred. Please try again later.');
       }
     }
 
     fetchCertificates();
   }, []); // Empty dependency array to run the effect only once on component mount
+  if (loading) {
+    return (
+      <div className="loading-container">
+        <div className="loading-text ">Loading Please Wait...</div>
+      </div>
+    );
+  }
   return (
     <div className="certificate-list-container">
       <h1 className="certificate-list-title">Certificates List</h1>
+      {error && (
+        
+      <div className="alert alert-danger" role="alert">
+        {error}
+      </div>
+    )}
       <ul className="certificate-list">
         {certificates.map((certificate, index) => (
           <li key={index} className="certificate-item">
             <div className="certificate-details">
               <p className="certificate-info">
-                <strong>First Name:</strong> {certificate.firstname}
-              </p>
-              <p className="certificate-info">
-                <strong>Last Name:</strong> {certificate.lastname}
+                <strong>Student Name:</strong> {certificate.studentname}
               </p>
               <p className="certificate-info">
                 <strong>Father Name:</strong> {certificate.fathername}
