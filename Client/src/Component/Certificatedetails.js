@@ -31,43 +31,34 @@ export const Certificatedetails = () => {
         }
 
         setMongodbData(blockchainData);
+    // Connect to the Ganache network
+    const provider = new Web3.providers.HttpProvider('http://localhost:7545');
+    const web3 = new Web3(provider);
+    const networkId = await web3.eth.net.getId();
+    const deployedNetwork = StudentCertificateContract.networks[networkId];
+    const contractAddress = deployedNetwork.address;
 
-        // Connect to the blockchain network
-        if (window.ethereum) {
-          await window.ethereum.enable();
-          const web3 = new Web3(window.ethereum);
-          const networkId = await web3.eth.net.getId();
-          const deployedNetwork = StudentCertificateContract.networks[networkId];
-          const contract = new web3.eth.Contract(
-            StudentCertificateContract.abi,
-            deployedNetwork && deployedNetwork.address        );
-const Certificate_UniqueId = web3.utils.asciiToHex(uniqueIdFromUrl);
-// Truncate or pad the uniqueId to 32 bytes
-const truncatedUniqueId = Certificate_UniqueId.slice(0, 66); // Example: Truncate to 66 characters
+    const contract = new web3.eth.Contract(
+      StudentCertificateContract.abi,
+      contractAddress
+    );
+    const certificateUniqueId = web3.utils.asciiToHex(uniqueIdFromUrl);
+    const truncatedUniqueId = certificateUniqueId.slice(0, 66);
 
-// Call the contract function to get the certificate data
-const result = await contract.methods
-  .getCertificateDataByUUID(truncatedUniqueId)
-  .call();
+    // Call the contract function to get the certificate data
+    const result = await contract.methods
+      .getCertificateDataByUUID(truncatedUniqueId)
+      .call();
 
-// Call the contract function to get the certificate data
+    setBlockchainData(result);
+  } catch (error) {
+    console.log(error);
+    window.alert('Failed to retrieve blockchain data. Please try again.');
+  }
+};
 
-  
-            setBlockchainData(result);
-            
-          } else {
-            console.log('Please install MetaMask or use a web3-enabled browser');
-          }
-        } catch (error) {
-          console.log(error);
-         
-          window.alert('Failed to retrieve blockchain data. Please try again.');
-        }
-      };
-  
-      fetchBlockchainData();
-    }, [uniqueId]);
-
+fetchBlockchainData();
+}, [uniqueId]);
 
   return (
     <div>
