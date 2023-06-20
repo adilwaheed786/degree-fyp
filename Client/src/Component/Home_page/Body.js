@@ -52,8 +52,7 @@ const Body = () => {
        // Extract the hash value
       console.log("Hash:", hash); // Print hash value in the console
       setHash(hash);
-      
-
+    
 
     } catch (error) {
       // Handle any errors
