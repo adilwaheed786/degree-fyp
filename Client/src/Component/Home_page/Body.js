@@ -53,6 +53,7 @@ const Body = () => {
       console.log("Hash:", hash); // Print hash value in the console
       setHash(hash);
       navigate('/certificate_details')
+      
 
     } catch (error) {
       // Handle any errors
