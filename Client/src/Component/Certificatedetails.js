@@ -18,19 +18,25 @@ export const Certificatedetails = () => {
   const [uniqueId, setUniqueId] = useState(uniqueIdFromUrl);
   const [mongodbData, setMongodbData] = useState(null);
   const [blockchainData, setBlockchainData] = useState(null); // Store the blockchain data
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(null);
   useEffect(() => {
     const fetchBlockchainData = async () => {
       try {
+        setLoading(true); // Show the loading screen
         // Fetch blockchain data from MongoDB using the uniqueId
         const response = await axios.get(`/getdata/${uniqueId}`);
         const blockchainData = response.data;
 
         if (!blockchainData || Object.keys(blockchainData).length === 0) {
           window.alert('Blockchain data not found');
+          setLoading(false); // Show the loading screen
           return;
         }
 
         setMongodbData(blockchainData);
+        setLoading(true); // Show the loading screen
     // Connect to the Ganache network
     const provider = new Web3.providers.HttpProvider('http://localhost:7545');
     const web3 = new Web3(provider);
@@ -49,17 +55,26 @@ export const Certificatedetails = () => {
     const result = await contract.methods
       .getCertificateDataByUUID(truncatedUniqueId)
       .call();
-
+      setLoading(false); // Show the loading screen
     setBlockchainData(result);
+    setSuccess("Degree Details Is Verified From BlockChain")
   } catch (error) {
     console.log(error);
-    window.alert('Failed to retrieve blockchain data. Please try again.');
+    setLoading(false); 
+    setError('An error occurred. Please try again later.');
+    //window.alert('Failed to retrieve blockchain data. Please try again.');
   }
 };
 
 fetchBlockchainData();
 }, [uniqueId]);
-
+if (loading) {
+  return (
+    <div className="loading-container">
+      <div className="loading-text ">Loading Please Wait...</div>
+    </div>
+  );
+}
   return (
     <div>
       {/* ------heading with some text code start */}
@@ -73,6 +88,18 @@ fetchBlockchainData();
             width: "100px",
           }}
         />
+         {error && (
+        
+        <div className="alert alert-danger" role="alert">
+          {error}
+        </div>
+      )}
+      {success && (
+        
+        <div className="alert alert-success" role="success">
+          {success}
+        </div>
+      )}
         <h2 style={{ fontWeight: "bolder", fontSize: "40px" }}>
           <b>BAHRIA UNIVERSITY</b>
         </h2>
@@ -84,7 +111,7 @@ fetchBlockchainData();
       <h3><u>STUDENT DATA:</u></h3>
       <div className="studentinfo">
         <div className='info'>
-        <div className="text" ><b>Student Name:</b> {blockchainData?.firstname} {data.lastname}</div>
+        <div className="text" ><b>Student Name:</b> {blockchainData?.studentname}</div>
           <div className="text"><b>Father Name:</b> {blockchainData?.fathername}</div>
           <div className="text"><b>Enrollment No: </b>{blockchainData?.enrollment_number}</div>
           <div className="text"><b>Registration No: </b>{blockchainData?.registration_number}</div>
@@ -103,10 +130,11 @@ fetchBlockchainData();
           <div className='text1' style={{whiteSpace: "normal", 
   wordWrap: "break-word"}}><b>Transaction Hash:</b> {mongodbData?.transactionHash}</div>
           <div className='text'><b>Time Stamp:</b> {mongodbData?.timestamp}</div>
-          <div className='text3'><b>Block Number:</b> {mongodbData?.blockNumber}</div>
+          <div className='text3' style={{whiteSpace: "normal", 
+  wordWrap: "break-word"}}><b>Document Hash:</b> {blockchainData?.documentHash}</div>
           <div className='text3'  style={{whiteSpace: "normal", 
   wordWrap: "break-word"}}><b>Block Hash:</b> {mongodbData?.blockHash}</div>
-          <div className='text3'><b>BlockChain-BlockNumber: </b>{mongodbData?.timestamp}
+          <div className='text3'><b>BlockChain-BlockNumber: </b>{mongodbData?.blockNumber}
 
           </div>
         </div>

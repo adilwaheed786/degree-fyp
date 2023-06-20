@@ -93,7 +93,7 @@ app.post('/create-pdf',async (req,res)=>{
           const mailOptions = {
             from: 'developingpurpose2222@gmail.com',
            // to: `${enrollment}@student.bahria.edu.pk`,
-            to: `adilwaheed2222.com@gamil.com`,
+            to: `adilwaheed2222.com@gmail.com`,
             subject: 'Email with PDF attachment',
             text: 'Please find attached PDF file.',
             attachments: [
