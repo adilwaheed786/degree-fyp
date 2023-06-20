@@ -125,7 +125,7 @@ export const Certificate = () => {
         // Truncate or pad the uniqueId to 32 bytes
         const truncatedUniqueId = Certificate_UniqueId.slice(0, 66); // Example: Truncate to 66 characters
 
-        const Documenthash = await axios.post('/create-pdf',{ firstname,
+        const Document = await axios.post('/create-pdf',{ firstname,
           lastname,
           program,
           dateofgraduation,
@@ -133,8 +133,8 @@ export const Certificate = () => {
           uniqueId,
           enrollment
          });
-         console.log(Documenthash.data.hash);
-         const studentname=`${capitalize(firstname) + capitalize(lastname)}`;
+         console.log(Document.data.hash);
+         const studentname=`${capitalize(firstname)} ${capitalize(lastname)}`;
         // Call the contract's addStudentDetails function
         const transact= await contract.methods.addStudentDetails(
           truncatedUniqueId,
@@ -147,7 +147,7 @@ export const Certificate = () => {
           batch,
           cgpa,
           dateofgraduation,
-          Documenthash.data.hash
+          Document.data.hash
         ).send({ from: fromAddress })
         .on('error', (error) => {
           if (error.message.includes("Certificate with this ID already exists")) {
