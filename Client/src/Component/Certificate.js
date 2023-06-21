@@ -7,6 +7,7 @@ import "../Css/certificate_design.css"
 import { v4 as uuidv4 } from 'uuid';
 import { useState,useEffect } from 'react'
 import { useLocation,useNavigate} from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import axios from 'axios'
 import saveAs from 'file-saver'
 import Web3 from 'web3';
@@ -22,6 +23,13 @@ export const Certificate = () => {
   const[updatedData, setUpdatedData] = useState(formData);
   const [storedData, setStoredData] = useState(null);
   const [uniqueId, setUniqueId] = useState('');
+  const [loading,setLoading]=useState(false)
+  const[mailPrompt,setmailPrompt]=useState(false)
+  const[Datasaved,setDatasaved]=useState(false)
+
+
+  
+
     // const queryParams = new URLSearchParams(location.search);
   const {
     firstname,
@@ -124,7 +132,7 @@ export const Certificate = () => {
         const Certificate_UniqueId = web3.utils.asciiToHex(uniqueId);
         // Truncate or pad the uniqueId to 32 bytes
         const truncatedUniqueId = Certificate_UniqueId.slice(0, 66); // Example: Truncate to 66 characters
-
+        setLoading(true)
         const Document = await axios.post('/create-pdf',{ firstname,
           lastname,
           program,
@@ -133,6 +141,8 @@ export const Certificate = () => {
           uniqueId,
           enrollment
          });
+          setLoading(false)
+       
          console.log(Document.data.hash);
          const studentname=`${capitalize(firstname)} ${capitalize(lastname)}`;
         // Call the contract's addStudentDetails function
@@ -193,6 +203,10 @@ export const Certificate = () => {
               // Make POST request to the server endpoint
                const response = await axios.post('/saveData', data);
                console.log(response.data); // Log the response
+               setDatasaved(true)
+              //  setmailPrompt(true)
+               window.location.href ='http://localhost:3000/student-certificate';
+               
               // await axios.post('/create-pdf',{ firstname,
               //   lastname,
               //   program,
@@ -228,13 +242,14 @@ export const Certificate = () => {
             }
           }
       });;
-         
-      
       } else {
         console.error('Web3 provider not found. Make sure you have MetaMask installed.');
+        alert('Web3 provider not found. Make sure you have MetaMask installed.')
       }
     } catch (error) {
       console.error('Error adding student details:', error);
+      alert('Error adding student details: Please Try again')
+      setLoading(false)
     }
   };
   
@@ -244,6 +259,34 @@ export const Certificate = () => {
   };
 
 
+  if (loading) {
+    return (
+      <div className="loading-container">
+        <div className="loading-text ">Loading Please Wait...</div>
+      </div>
+    );
+  }
+
+  if (mailPrompt) {
+    return (
+      <div className="loading-container">
+        <div className="loading-text ">PDF has been mailed to {firstname} {lastname}</div>
+      </div>
+    );
+  }
+
+ 
+
+ 
+
+  if (Datasaved) {
+    return (
+      <div className="loading-container">
+        <div className="loading-text ">Data has been saved in blockchain Sucessfully</div>
+      </div>
+    );
+  }
+  
 
   return (
     <div>
