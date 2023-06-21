@@ -125,11 +125,20 @@ export const Certificate = () => {
         // Truncate or pad the uniqueId to 32 bytes
         const truncatedUniqueId = Certificate_UniqueId.slice(0, 66); // Example: Truncate to 66 characters
 
+        const Document = await axios.post('/create-pdf',{ firstname,
+          lastname,
+          program,
+          dateofgraduation,
+          cgpa,
+          uniqueId,
+          enrollment
+         });
+         console.log(Document.data.hash);
+         const studentname=`${capitalize(firstname)} ${capitalize(lastname)}`;
         // Call the contract's addStudentDetails function
         const transact= await contract.methods.addStudentDetails(
           truncatedUniqueId,
-          capitalize(firstname),
-          capitalize(lastname),
+          studentname,
           program,
           capitalize(fathername),
           other,
@@ -137,7 +146,8 @@ export const Certificate = () => {
           registration,
           batch,
           cgpa,
-          dateofgraduation
+          dateofgraduation,
+          Document.data.hash
         ).send({ from: fromAddress })
         .on('error', (error) => {
           if (error.message.includes("Certificate with this ID already exists")) {
@@ -183,23 +193,33 @@ export const Certificate = () => {
               // Make POST request to the server endpoint
                const response = await axios.post('/saveData', data);
                console.log(response.data); // Log the response
-              await axios.post('/create-pdf',{ firstname,
-                lastname,
-                program,
-                dateofgraduation,
-                cgpa,
-                uniqueId
-               })
-               console.log('create pdf ki Api')
-              //  .then(() => axios.get('/fetch-pdf', {responseType: 'blob'}))
-              const res = await axios.get('/fetch-pdf', { responseType: 'blob' });
-              //  .then((res) =>{
-                 const pdfBlob = new Blob([res.data],{type:'application/pdf'});
-                 saveAs(pdfBlob,'newpdf.pdf')
-                 
-                 console.log('pdf ban gai hai aur download hau gai hai')
-           
+              // await axios.post('/create-pdf',{ firstname,
+              //   lastname,
+              //   program,
+              //   dateofgraduation,
+              //   cgpa,
+              //   uniqueId
               //  })
+              // const pdfresponse = await axios.post('/create-pdf',{ firstname,
+              //     lastname,
+              //     program,
+              //     dateofgraduation,
+              //     cgpa,
+              //     uniqueId
+              //    },{
+              //     responseType: 'arraybuffer',
+              //   });
+              //   const pdfBuffer = response.data;
+              //  console.log('create pdf ki Api')
+              // //  .then(() => axios.get('/fetch-pdf', {responseType: 'blob'}))
+              // const res = await axios.get('/fetch-pdf', { responseType: 'blob' });
+              // //  .then((res) =>{
+              //    const pdfBlob = new Blob([res.data],{type:'application/pdf'});
+              //    saveAs(pdfBlob,'newpdf.pdf')
+                 
+              //    console.log('pdf ban gai hai aur download hau gai hai')
+           
+              // //  })
                
             } catch (error) {
               console.error('Error:', error);

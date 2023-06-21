@@ -3,8 +3,7 @@ pragma solidity ^0.8.0;
 
 contract StudentCertificateContract {
     struct Certificate {
-        string firstname;
-        string lastname;
+        string studentname; 
         string program;
         string fathername;
         string campus;
@@ -13,6 +12,7 @@ contract StudentCertificateContract {
         string batch;
         string cgpa;
         string dateofgraduation;
+        string documentHash;
     }
 
     Certificate[] public certificateList;
@@ -20,8 +20,7 @@ contract StudentCertificateContract {
     event CertificateAdded(bytes32 uniqueId);
     function addStudentDetails(
         bytes32 uniqueId,
-        string memory _firstname,
-        string memory _lastname,
+        string memory _studentname,
         string memory _program,
         string memory _fathername,
         string memory _campus,
@@ -29,7 +28,8 @@ contract StudentCertificateContract {
         string memory _registration_number,
         string memory _batch,
         string memory _cgpa,
-        string memory _dateofgraduation
+        string memory _dateofgraduation,
+        string memory _documentHash
     ) public {
         // require(certificateIndex[uniqueId] == 0, "Certificate with this ID already exists");
           if (certificateIndex[uniqueId] != 0) {
@@ -51,8 +51,7 @@ contract StudentCertificateContract {
     }
         Certificate memory certificate = Certificate({
             
-            firstname: _firstname,
-            lastname: _lastname,
+            studentname: _studentname,
             program: _program,            
             fathername:_fathername,
             campus:_campus,
@@ -60,7 +59,8 @@ contract StudentCertificateContract {
             registration_number:_registration_number,
             batch:_batch,
             cgpa: _cgpa,
-            dateofgraduation: _dateofgraduation
+            dateofgraduation: _dateofgraduation,
+            documentHash: _documentHash
         });
 
         certificateList.push(certificate);
@@ -85,5 +85,13 @@ contract StudentCertificateContract {
 
         return certificateList[index - 1];
     }
-    
+    function verifyDocumentHash(string memory documentHash) public view returns (bool) {
+        for (uint256 i = 0; i < certificateList.length; i++) {
+            Certificate memory certificate = certificateList[i];
+            if (keccak256(bytes(certificate.documentHash)) == keccak256(bytes(documentHash))) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

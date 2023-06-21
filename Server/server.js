@@ -9,6 +9,8 @@ const certificateDoc = require("./documents");
 const crypto = require("crypto");
 const multer = require("multer");
 require("dotenv").config();
+const nodemailer = require('nodemailer');
+
 
 
 const app = express();
@@ -30,52 +32,99 @@ const generateQRCodeDataUrl = async (data) => {
   }
 };
 
+
+function generateSHA256Hash(fileContent) {
+  const hash = crypto.createHash('sha256');
+  hash.update(fileContent);
+  return hash.digest('hex');
+}
+
 // const qrCodeData = QRCode.toString(uniqueId, {
 //   errorCorrectionLevel: 'H',
 //   type: 'svg'
 // })
 
 //POST - Generating pdf and fetching the data
-app.post("/create-pdf", async (req, res) => {
-  try {
-    console.log("yai mai post ki API mai aai hoon");
-    const {
-      firstname,
-      lastname,
-      program,
-      cgpa,
-      dateofgraduation,
-      uniqueId,
-    } = req.body;
 
-    console.log(req);
-    console.log(res);
-    let temp = await certificateDoc(
-      firstname,
-      lastname,
-      program,
-      cgpa,
-      dateofgraduation,
-      uniqueId
-    );
-    //let temp = certificateDoc(req.body).toString()
-    const options = {
-      format: "A4", // Set the PDF format to A4 size
-      // Add any additional options as needed
-    };
+app.post('/create-pdf',async (req,res)=>{
+  try{
+      console.log('yai mai post ki API mai aai hoon')
+      const { firstname, lastname, program, cgpa, dateofgraduation,uniqueId,enrollment} = req.body;
+      
+      console.log(req)
+      console.log(res)
+      let temp =await  certificateDoc(firstname, lastname, program, cgpa, dateofgraduation,uniqueId)
+      //let temp = certificateDoc(req.body).toString()
+      const options = {
+          format: 'Letter', // Set the PDF format to A4 size
+          // Add any additional options as needed
+        };
+      
+      console.log(temp)
+      console.log('create pdf log');
+      // pdf.create(temp, options).toBuffer((err, pdfBuffer) => {
+      //   if (err) {
+      //     console.error('Error generating PDF:', err);
+      //     res.status(500).json({ error: 'Error generating PDF' });
+      //     return;
+      //   }
+  
+      //   res.setHeader('Content-Type', 'application/pdf');
+      //   res.send(pdfBuffer);
+      //   console.log(pdfBuffer)
+      // });
+      pdf.create(temp, options).toBuffer(async (err, pdfBuffer) => {
+        if (err) {
+          console.error('Error generating PDF:', err);
+          res.status(500).json({ error: 'Error generating PDF' });
+          return;
+        }
+        
+        const hash = generateSHA256Hash(pdfBuffer);
+        console.log('SHA256 Hash:', hash);
+        // Generate hash using IPFS
+        try {
 
-    console.log(temp);
-    console.log("create pdf log");
-    pdf.create(temp, options).toFile("result.pdf", (err) => {
-      if (err) {
-        res.send(Promise.reject());
-      } else {
-        res.send(Promise.resolve());
-      }
-    });
-  } catch (error) {
-    console.error("Error generating PDF:", error);
-    res.status(500).send("Error generating PDF");
+      
+          const transporter = nodemailer.createTransport({
+            host: 'smtp.gmail.com',
+            port: 587,
+            secure: false,
+            auth: {
+              user: 'developingpurpose2222@gmail.com',
+              pass: 'zmpyxdnylkkqlozt',
+            },
+          });
+      
+          const mailOptions = {
+            from: 'developingpurpose2222@gmail.com',
+           // to: `${enrollment}@student.bahria.edu.pk`,
+            to: `adilwaheed2222.com@gmail.com`,
+            subject: 'Email with PDF attachment',
+            text: 'Please find attached PDF file.',
+            attachments: [
+              {
+                filename: `${enrollment}.pdf`,
+                content: pdfBuffer,
+              },
+            ],
+          };
+      
+          console.log(mailOptions)
+          try {
+            const info = await transporter.sendMail(mailOptions);
+            console.log('Email sent:', info.messageId);
+            res.status(200).json({ message: 'Email sent successfully',hash });
+           // res.send(hash);
+          } catch (error) {
+            console.error('Error sending email:', error);
+            res.status(500).json({ error: 'An error occurred while sending the email' });
+          }
+        } catch (error) {
+          console.error('Error adding PDF to IPFS:', error);
+          res.status(500).json({ error: 'Error adding PDF to IPFS' });
+        }
+      });
   }
 });
 
@@ -255,6 +304,46 @@ app.post("/saveData", async (req, res) => {
   } catch (error) {
     console.error("Error saving data to MongoDB:", error);
     res.status(500).json({ error: "Failed to save data" });
+  }
+});
+// Fetch PDF and send email with attachment
+app.post('/send-email', async (req, res) => {
+  try {
+    const { pdfdata, senderEmail } = req.body;
+
+    // Create a Nodemailer transporter
+    const transporter = nodemailer.createTransport({
+      host: 'smtp.gmail.com',
+      port: 587,
+      secure: false,
+      auth: {
+        user: 'developingpurpose2222@gmail.com',
+        pass: 'zmpyxdnylkkqlozt',
+      },
+    });
+
+    // Define the email options
+    const mailOptions = {
+      from: 'developingpurpose2222@gmail.com',
+      to: senderEmail,
+      subject: 'Email with PDF attachment',
+      text: 'Please find attached PDF file.',
+      attachments: [
+        {
+          filename: 'Test.pdf',
+          content: pdfdata,
+        },
+      ],
+    };
+
+    // Send the email
+    const info = await transporter.sendMail(mailOptions);
+    console.log('Email sent:', info.messageId);
+
+    res.status(200).json({ message: 'Email sent successfully' });
+  } catch (error) {
+    console.error('Error sending email:', error);
+    res.status(500).json({ error: 'An error occurred while sending the email' });
   }
 });
 

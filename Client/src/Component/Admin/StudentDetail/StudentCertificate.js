@@ -163,7 +163,7 @@ export const StudentCertificate = () => {
 
             setFirstnameError('*This Field is required');
         } else {
-            const regs = /^[a-zA-Z]+$/;
+            const regs = /^[a-zA-Z\s]+$/;
             if (!regs.test(firstname)) {
                 setFirstnameError('First name should contain only letters');
             }
@@ -183,7 +183,7 @@ export const StudentCertificate = () => {
 
             setLastnameError('*This Field Is Required');
         } else {
-            const regs = /^[a-zA-Z]+$/;
+            const regs = /^[a-zA-Z\s]+$/;
             if (!regs.test(lastname)) {
                 setLastnameError('Last name should contain only letters');
             }
@@ -233,7 +233,7 @@ export const StudentCertificate = () => {
             setEnrollmentError("Enrollment number is required"); // returns error message if it is empty
         }
         else {
-            const regex = /^[0-9]{2}[0-9]{6}[0-9]{3}$/; // regular expression to match the format
+            const regex = /^[0-9]{2}-[0-9]{6}-[0-9]{3}$/;// regular expression to match the format
             if (!regex.test(enrollment)) { // checks if the enrollment number matches the format or not
                 setEnrollmentError(" Please enter a valid enrollment number"); // returns error message if it doesn't match the format
             }
@@ -385,10 +385,10 @@ export const StudentCertificate = () => {
                         <div className="form-group col-md-4 m-2">
   <select className="form-control shadow"value={program} onChange={(event) => setProgram(event.target.value)} onFocus={handleprogramFocus} >
     <option value="" >Select Program</option>
-    <option value="Bachlors of Software Engineering">Bachlors of Software Engineering</option>
-    <option value="Bachlors of Electrical Engineering">Bachlors of Electrical Engineering</option>
-    <option value="Bachlors of Mechanical Engineering">Bachlors of Mechanical Engineering</option>
-    <option value="Bachlors of Computer Engineering">Bachlors of Computer Engineering</option>
+    <option value="Bachelors of Software Engineering">Bachelors of Software Engineering</option>
+    <option value="Bachelors of Electrical Engineering">Bachelors of Electrical Engineering</option>
+    <option value="Bachelors of Mechanical Engineering">Bachelors of Mechanical Engineering</option>
+    <option value="Bachelors of Computer Engineering">Bachelors of Computer Engineering</option>
     {/* Add more programs as needed */}
   </select>
   {programError && <span style={{ color: 'red' }}>{programError}</span>}
