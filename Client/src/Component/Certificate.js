@@ -132,6 +132,7 @@ export const Certificate = () => {
         const Certificate_UniqueId = web3.utils.asciiToHex(uniqueId);
         // Truncate or pad the uniqueId to 32 bytes
         const truncatedUniqueId = Certificate_UniqueId.slice(0, 66); // Example: Truncate to 66 characters
+        
         setLoading(true)
         const Document = await axios.post('/create-pdf',{ firstname,
           lastname,
@@ -242,6 +243,8 @@ export const Certificate = () => {
             }
           }
       });;
+
+      
       } else {
         console.error('Web3 provider not found. Make sure you have MetaMask installed.');
         alert('Web3 provider not found. Make sure you have MetaMask installed.')
@@ -275,9 +278,9 @@ export const Certificate = () => {
     );
   }
 
- 
 
- 
+
+  
 
   if (Datasaved) {
     return (
