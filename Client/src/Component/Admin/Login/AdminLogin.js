@@ -1,108 +1,100 @@
 import React, { useState } from 'react';
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../Authentication/AuthContext';// Import the AuthContext and useAuth components
 
 import './Adminlogin.css';
 
 export const AdminLogin = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [passworderror, setpassworderror]=useState("");
-  const [emailerror, setemailerror] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+  const [emailError, setEmailError] = useState('');
   const navigate = useNavigate();
+  const { login } = useAuth(); 
+
   const handleLogin = (e) => {
     e.preventDefault();
 
-    
+    let isValid = true;
+
     if (email.trim() === '') {
-      setemailerror("This Field Is Required");
-    
-    } 
-    else
-    {
-    validateEmail(email);
+      setEmailError('This field is required');
+      isValid = false;
+    } else if (!validateEmail(email)) {
+      setEmailError('Invalid email address');
+      isValid = false;
     }
+
     if (password.trim() === '') {
-      setpassworderror("This Field Is Required");
-     
-    } else
-    {
-      validatePass(password)
+      setPasswordError('This field is required');
+      isValid = false;
+    } else if (!validatePassword(password)) {
+      setPasswordError('Invalid password');
+      isValid = false;
     }
 
-   if(validateEmail(email) && validatePass(password))
-   {
-  navigate("/verify-auth"); 
-   }
-  };
-  const handleEmailFocus = () => {
-    setemailerror("");
- }
- const handlePasswordFocus = () => {
-  setpassworderror("");
-}
-  const validateEmail = (email) => {
-    
-    if(!email){
-      console.log("EM"+email)
-      setemailerror(
-        "This Field Is Required")
-      return false;
-    }
-    else  {
-      const re = /\S+@\S+\.com+/;
-      console.log(email)
-      console.log(re.test(email))
-
-      if(!re.test(email)){
-        setemailerror("This Is Invalid Email Address")
-        return false;
+    if (isValid) {
+      // Perform authentication check here
+      // For example, call an API to verify credentials
+      // If the credentials are correct, navigate to the protected route
+      if (email === 'admin@gmail.com' && password === '123456') {
+       login();
+        navigate('/verify-auth');
+      } else {
+        // Handle incorrect credentials
+        // Show error message or perform other actions
+        setPasswordError('Invalid email or password');
       }
-      return re.test(email);
     }
-    
-   
-  }
-  const validatePass = (password) => {
-   
-    if(!password) {
-      console.log("PSD"+password)
-       setpassworderror("This Field Is Required")
-       return false;
-    } else if(password.length < 5) {
-       setpassworderror("Invalid Paasword")
-       return false;
-    } else {
-       const res = /^[a-zA-Z0-9]+$/;
-       console.log(password)
-       console.log(res)
-       if(!res.test(password)) {
-          setpassworderror("This Is Invalid Password ")
-       }
-       return res.test(password);
-    }
- }
+  };
+
+  const handleEmailFocus = () => {
+    setEmailError('');
+  };
+
+  const handlePasswordFocus = () => {
+    setPasswordError('');
+  };
+
+  const validateEmail = (email) => {
+    const re = /\S+@\S+\.\S+/;
+    return re.test(email);
+  };
+
+  const validatePassword = (password) => {
+    return password.length >= 5;
+  };
 
   return (
     <div className="OuterContainer">
       <div className="InnerContainer">
-        <b>
-          <h1 className="heading">LOGIN</h1>
-        </b>
+        <h1 className="heading">LOGIN</h1>
         <div>
-          <input placeholder="Email" className="form-control UserInput shadow" type="text"  onChange={(event) => setEmail(event.target.value)} onFocus={handleEmailFocus} />
-          {   emailerror && <span style={{ color: 'red' }}>{emailerror}</span>}
+          <input
+            placeholder="Email"
+            className="form-control UserInput shadow"
+            type="text"
+            value={email}
+            onChange={(event) => setEmail(event.target.value)}
+            onFocus={handleEmailFocus}
+          />
+          {emailError && <span style={{ color: 'red' }}>{emailError}</span>}
         </div>
         <div>
-          <input placeholder="Password" className="form-control UserInput mt-20 shadow" type="password" onChange={(event) => setPassword(event.target.value)} onFocus={handlePasswordFocus} />
-          {passworderror  && <span style={{ color: 'red' }}>{passworderror}</span>}
+          <input
+            placeholder="Password"
+            className="form-control UserInput mt-20 shadow"
+            type="password"
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
+            onFocus={handlePasswordFocus}
+          />
+          {passwordError && <span style={{ color: 'red' }}>{passwordError}</span>}
         </div>
-        {/* <Link onClick={e => ((!validateEmail(email)) || (!validatePass(password)))  ? e.preventDefault() : null} to={"/verify-auth"}>
-          <button onClick={handleLogin} className={'button mt-20'}  type="submit">Log In</button>
-        </Link> */}
-        <button className={'button mt-20'} type="submit" onClick={handleLogin}>Log In</button>
-       
-                            
+        <button className="button mt-20" type="submit" onClick={handleLogin}>
+          Log In
+        </button>
       </div>
     </div>
   );
-}
+};
