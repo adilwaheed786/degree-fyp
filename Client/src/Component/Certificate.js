@@ -29,22 +29,32 @@ export const Certificate = () => {
 
 
   
-
+  if (formData){
+    var {
+      firstname,
+      lastname,
+      fathername,
+      enrollment,
+      registration,
+      program,
+      batch,
+      other,
+      dateofgraduation,
+      cgpa,
+    } = formData;
+  }
     // const queryParams = new URLSearchParams(location.search);
-  const {
-    firstname,
-    lastname,
-    fathername,
-    enrollment,
-    registration,
-    program,
-    batch,
-    other,
-    dateofgraduation,
-    cgpa,
-  } = formData;
+  
 
   useEffect(() => {
+    
+    if (!localStorage.getItem('token')) {
+      // Token not found in local storage, redirect to the home page
+      window.location.href = '/';
+    } 
+    if (!formData) {
+      navigate('/student-certificate');
+    }
     const generateUniqueId = async () => {
       const id = uuidv4();
       setUniqueId(id.toUpperCase());
@@ -109,7 +119,7 @@ export const Certificate = () => {
       if (window.ethereum) {
         // Create a new web3 instance
         const web3 = new Web3(window.ethereum);
-
+        console.log(window.ethereum)  
         // Request access to the user's MetaMask accounts
         const accounts = await window.ethereum.request({
           method: 'eth_requestAccounts'
@@ -141,7 +151,8 @@ export const Certificate = () => {
             dateofgraduation,
             cgpa,
             uniqueId,
-            enrollment
+            enrollment,
+            registration
            });
           console.log('PDF generated successfully');
           console.log(certificate_response);
@@ -241,8 +252,8 @@ export const Certificate = () => {
         alert('Web3 provider not found. Make sure you have MetaMask installed.')
       }
     } catch (error) {
-      console.error('Error adding student details:', error);
-      alert('Error adding student details: Please Try again')
+      console.error('Please Attach MetaMask Wallet and Log In:', error);
+      alert('Please Attach MetaMask Wallet and Log In')
       setLoading(false)
     }
   };
@@ -305,6 +316,7 @@ export const Certificate = () => {
           }} />
 
           <div className='Certcontent'>
+          <p>Registration # : <u>{registration}</u></p>
             <h4 style={{ marginTop: "10px" }}>BAHRIA UNIVERSITY</h4>
             <img src={logo} alt="" style={{
               maxwidth: "100px",
@@ -313,8 +325,8 @@ export const Certificate = () => {
               width: "10%",
             }} />
             <p class="bahria">BAHRIA AND FACULTY OF UNIVERSITY HAVE GRANTED TO </p>
-            <h5 style={{ textTransform: 'capitalize' }}>{firstname + " " + lastname}</h5>
-            <h5 style={{ textTransform: 'Uppercase' }}>{program}</h5>
+            <h5 style={{ textTransform: 'capitalize' }}>{firstname && lastname ? firstname + " " + lastname : ""}</h5>
+            <h5 style={{ textTransform: 'Uppercase' }}>{program && program}</h5>
             <p>CGPA: {cgpa}</p>
 
 
@@ -322,7 +334,7 @@ export const Certificate = () => {
 
 
             <div className='sealdiv'>
-              <p>Date Of Graduation: {dateofgraduation} </p>
+              <p>Date Of Graduation: {dateofgraduation && dateofgraduation} </p>
 
               <img src={s4} alt="" style={{
                 maxwidth: "100px",
@@ -336,7 +348,7 @@ export const Certificate = () => {
 
             <div className='sealdiv' style={{ display: 'flex', justifyContent: "center", alignItems: 'center' }}>
 
-              <QRCode value={uniqueId} style={{
+              <QRCode value={uniqueId && uniqueId} style={{
                 maxwidth: "100px",
                 height: "auto",
                 maxheight: "50px",
@@ -344,7 +356,7 @@ export const Certificate = () => {
 
               }} />
 
-              <p>UNIQUE ID: {uniqueId}</p>
+              <p>UNIQUE ID: {uniqueId && uniqueId}</p>
             </div>
 
           </div>

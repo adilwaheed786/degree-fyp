@@ -63,11 +63,11 @@ const upload = multer({ storage });
 app.post('/create-pdf', async (req, res) => {
   try {
     console.log('yai mai post ki API mai aai hoon')
-    const { firstname, lastname, program, cgpa, dateofgraduation, uniqueId, enrollment } = req.body;
+    const { firstname, lastname, program, cgpa, dateofgraduation, uniqueId, enrollment,registration } = req.body;
 
     console.log(req)
     console.log(res)
-    let temp = await certificateDoc(firstname, lastname, program, cgpa, dateofgraduation, uniqueId)
+    let temp = await certificateDoc(firstname, lastname, program, cgpa, dateofgraduation, uniqueId,registration)
     //let temp = certificateDoc(req.body).toString()
     const options = {
       format: 'Letter', // Set the PDF format to A4 size
@@ -171,7 +171,42 @@ app.get('/getdata/:id', async (req, res) => {
   }
 });
 
+app.post('/login', async (req, res) => {
+  var email = req.body.email;
+  var password = req.body.password;
+  try {
+    // Connect to MongoDB
+    const client = await MongoClient.connect(url);
+    console.log('Connected to MongoDB...');
+    const db = client.db(dbName);
+    console.log(req.body.email)
+    console.log(email)
 
+    // Perform user authentication
+    // Query the MongoDB collection for the user with the provided email and password
+    const collection = db.collection('AdminUsers');
+    const user = await collection.findOne({ email , password});
+
+    if (!user) {
+      // User not found
+      client.close();
+      console.log('Disconnected from MongoDB...');
+      return res.json({ error: 'Invalid credentials' });
+    }
+
+    // User authentication successful
+    // You can generate and return a JSON Web Token (JWT) for authentication
+    // ...
+    console.log(user);
+    client.close();
+    console.log('Disconnected from MongoDB');
+
+    return res.json({ token: user.token, message: 'Login successful' });
+  } catch (error) {
+    console.error('Failed to query the database:', error);
+    return res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
 
 
 // Endpoint to handle saving data
@@ -232,8 +267,8 @@ app.post('/send-email', async (req, res) => {
 
     const mailOptions = {
       from: 'developingpurpose2222@gmail.com',
-      to: `${senderEmail}@student.bahria.edu.pk`,
-      //to: 'adilwaheed2222.com@gmail.com',
+      //to: `${senderEmail}@student.bahria.edu.pk`,
+      to: 'adilwaheed2222.com@gmail.com',
       subject: 'Your Degree Certificate',
       text: `Dear Student,    
     Please find attached your degree certificate. Congratulations on your accomplishment!

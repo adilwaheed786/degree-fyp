@@ -9,7 +9,7 @@ async function generateQRCode(value) {
     }
   }
   
-module.exports =async  (firstname, lastname, program, cgpa, dateofgraduation,uniqueId) =>{
+module.exports =async  (firstname, lastname, program, cgpa, dateofgraduation,uniqueId,registration) =>{
     const qrCodeData = await generateQRCode(uniqueId);
     const qrCodeDataUrl = `data:image/png;base64,${qrCodeData}`;
    // console.log("new" + qrCodeData);
@@ -47,7 +47,7 @@ module.exports =async  (firstname, lastname, program, cgpa, dateofgraduation,uni
               <img src="https://github.com/adilwaheed786/degree-fyp/blob/master/src/images/certificate.png?raw=true"
                   alt="certificate" class="certificateimage" style="width: 1200px; max-height: auto; height: 1300px;border: 2px solid black;">
               <div class="Certcontent" style="   position: absolute;
-              top: 10%;
+              top: 5%;
               left: 40%;
               transform: translate(-50%, -50%);
               padding: 20px;
@@ -55,6 +55,7 @@ module.exports =async  (firstname, lastname, program, cgpa, dateofgraduation,uni
               display: flex;
               flex-direction: column;
               align-items: center;">
+                    <p>Registration # : <u>${registration}</u></p>
                   <h4 style="margin-top: 10px;  font-weight: bolder;
                   white-space: nowrap; font-size:50px">BAHRIA UNIVERSITY</h4>
                   <img src="https://github.com/adilwaheed786/degree-fyp/blob/master/src/images/logo.png?raw=true" alt="images" style="max-width: 117px;max-height: 129px;width: 100%; margin-left:30%">

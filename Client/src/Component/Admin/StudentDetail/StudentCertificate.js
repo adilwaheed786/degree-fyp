@@ -44,6 +44,10 @@ export const StudentCertificate = () => {
     
     useEffect(() => {
         
+      if (!localStorage.getItem('token')) {
+        // Token not found in local storage, redirect to the home page
+        window.location.href = '/';
+      } 
         if (formData != undefined) {
             setFirstname(formData.firstname);
             setLastname(formData.lastname);

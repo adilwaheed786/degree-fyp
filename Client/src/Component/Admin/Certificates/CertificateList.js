@@ -9,6 +9,12 @@ function CertificateList() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+   
+      if (!localStorage.getItem('token')) {
+        // Token not found in local storage, redirect to the home page
+        window.location.href = '/';
+      } 
+    
     async function fetchCertificates() {
       try {
         //const web3 = new Web3(window.ethereum);
