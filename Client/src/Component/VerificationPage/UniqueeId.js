@@ -99,7 +99,7 @@ const UniqueeId = () => {
         <div className='col-12'>
           <form onSubmit={handleSubmit}>
       
-            <div className='UID-div'>
+            <div className='UID-div m-2'>
               <div className='label-div'>
                 <label className='id-label'>Unique ID</label>
               </div>
@@ -116,7 +116,7 @@ const UniqueeId = () => {
                 ''
               )}
             </div>
-            <div className='roboo'>
+            {/* <div className='roboo'>
               <div className='emptyy'></div>
               <div className='notRobot'>
                 <ReCAPTCHA
@@ -125,7 +125,7 @@ const UniqueeId = () => {
                   onChange={handleRecaptcha}
                 />
               </div>
-            </div>
+            </div> */}
             <div className='btn-div'>
               <button className='submit-btn submit-id' type='submit'>
                 Submit

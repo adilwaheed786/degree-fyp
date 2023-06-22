@@ -59,7 +59,7 @@ const QrCode = () => {
               Turn Off Camera
             </button>
             </div>
-          <div className='.col-6 QR-image'>
+          <div className='.col-6 QR-image m-2'>
             {
               ShowImage ? (
                 <img src={image} alt='img'></img>
@@ -82,7 +82,7 @@ const QrCode = () => {
       {cameraState && (
         <>
         <br></br>
-          <select onChange={(e) => setSelected(e.target.value)}>
+          <select className='m-2 dropdown' onChange={(e) => setSelected(e.target.value)}>
             <option value={"environment"}>Back Camera</option>
             <option value={"user"}>Front Camera</option>
           </select>        
