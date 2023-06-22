@@ -26,6 +26,8 @@ export const Certificate = () => {
   const [loading,setLoading]=useState(false)
   const[mailPrompt,setmailPrompt]=useState(false)
   const[Datasaved,setDatasaved]=useState(false)
+  const [error, setError] = useState(false);
+  const [message,setmessage] =useState('');
 
 
   
@@ -247,7 +249,11 @@ export const Certificate = () => {
       }
     } catch (error) {
       console.error('Error adding student details:', error);
-      alert('Error adding student details: Please Try again')
+      {error && (       
+        <div className="alert alert-danger m-2" role="alert">
+          setmessage('Error adding Student Details.Please Try again')
+        </div>
+      )}
       setLoading(false)
     }
   };
@@ -274,7 +280,7 @@ export const Certificate = () => {
     );
   }
 
-  
+
 
 
 
