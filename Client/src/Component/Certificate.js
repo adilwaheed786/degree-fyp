@@ -143,6 +143,7 @@ export const Certificate = () => {
             uniqueId,
             enrollment
            });
+           setLoading(false)
           console.log('PDF generated successfully');
           console.log(certificate_response);
           console.log(certificate_response.data);
@@ -216,6 +217,7 @@ export const Certificate = () => {
                 try {
                   const response = await axios.post('/send-email', requestData);
                   console.log('Email sent successfully:', response.data.message);
+                  setmailPrompt(true)
                   window.location.href ='http://localhost:3000/student-certificate';
                 } catch (error) {
                   console.error('Error sending email:', error.response.data.error);
@@ -232,6 +234,8 @@ export const Certificate = () => {
   
         } catch (error) {
           console.error('Error generating PDF:', error.response.data.error);
+          alert('Error adding student details: Please Try again')
+          setLoading(false)
         }
         
     
@@ -239,6 +243,7 @@ export const Certificate = () => {
       } else {
         console.error('Web3 provider not found. Make sure you have MetaMask installed.');
         alert('Web3 provider not found. Make sure you have MetaMask installed.')
+        setLoading(false)
       }
     } catch (error) {
       console.error('Error adding student details:', error);
