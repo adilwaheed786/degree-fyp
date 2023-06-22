@@ -57,7 +57,7 @@ module.exports =async  (firstname, lastname, program, cgpa, dateofgraduation,uni
               align-items: center;">
                   <h4 style="margin-top: 10px;  font-weight: bolder;
                   white-space: nowrap; font-size:50px">BAHRIA UNIVERSITY</h4>
-                  <img src="https://github.com/adilwaheed786/degree-fyp/blob/master/src/images/logo.png?raw=true" alt="" style="max-width: 117px;max-height: 129px;width: 100%; margin-left:30%">
+                  <img src="https://github.com/adilwaheed786/degree-fyp/blob/master/src/images/logo.png?raw=true" alt="images" style="max-width: 117px;max-height: 129px;width: 100%; margin-left:30%">
                   <p class="bahria" style="margin-top: 10px;font-size:20px; white-space: nowrap;">BAHRIA UNIVERSITY HAVE GRANTED THIS CERTIFICATE TO</p>
                   <h5 style="text-transform: capitalize; font-weight: bold; font-size:30px;white-space: nowrap;margin-left:30%;
                   ">${firstname} ${lastname}</h5>
@@ -70,13 +70,10 @@ module.exports =async  (firstname, lastname, program, cgpa, dateofgraduation,uni
                   <p style="font-size:25px; white-space: nowrap;">WITH ALL THE RIGHTS AND PRIVILEGES THERETO</p>
                   <div class="sealdiv">
                       <p style="font-size:25px; margin-left:20%">Date Of Graduation: ${dateofgraduation}</p>
-                      <img src="https://github.com/adilwaheed786/degree-fyp/blob/master/src/images/s4.png?raw=true" alt=""
+                      <img src="https://github.com/adilwaheed786/degree-fyp/blob/master/src/images/s4.png?raw=true" alt="images"
                           style="  max-width: 100px; height: auto; width: 25%; margin-left:32%" />
-                      <p style=" font-size:25px;margin-left:30%">SIGNATURE:</p>
-                  </div>
-                  <div class="sealdiv">
-                  
-                  <img src="${qrCodeData}" alt=""
+                  </div>                  
+                  <img src="${qrCodeData}" alt="images"
                   style="display: inline; max-width: 100px; height: auto; width: 20%;" />
                       
                       <p style="font-size:25px">UNIQUE ID: ${uniqueId}</p>
