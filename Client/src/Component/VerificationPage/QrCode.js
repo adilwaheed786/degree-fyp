@@ -37,7 +37,7 @@ const QrCode = () => {
   const generateLink = (scanData) => {
     // Here, you can implement your logic to generate the link based on the scanData
     // For example, you can append the scanData to a base URL or use it as a query parameter
-    const baseUrl = "http://localhost:3000/";//For Local
+    const baseUrl = window.location.origin + "/";;//For Local
     const link = `${baseUrl}certificate_details/${encodeURIComponent(scanData)}`;
   
     return link;
@@ -72,7 +72,7 @@ const QrCode = () => {
         </div>
         {error && !ShowImage &&(
         
-        <div className="alert alert-danger" role="alert">
+        <div className="alert alert-danger m-3 text-center" role="alert">
           {error}
         </div>
       )}

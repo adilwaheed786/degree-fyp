@@ -27,7 +27,7 @@ export const Certificate = () => {
   const[mailPrompt,setmailPrompt]=useState(false)
   const[Datasaved,setDatasaved]=useState(false)
 
-
+  const[errorMessage,setErrorMessage]=useState(false)
   
   if (formData){
     var {
@@ -106,9 +106,11 @@ export const Certificate = () => {
         console.log(certificateDataArray);
 
       } else {
+        setErrorMessage('Web3 provider not found. Make sure you have MetaMask installed.');
         console.error('Web3 provider not found. Make sure you have MetaMask installed.');
       }
     } catch (error) {
+      setErrorMessage("Error retrieving stored data")
       console.error('Error retrieving stored data:', error);
     }
   };
@@ -162,6 +164,7 @@ export const Certificate = () => {
           // Continue with other tasks using the generated PDF file
           const studentname=`${capitalize(firstname)} ${capitalize(lastname)}`;
           // Call the contract's addStudentDetails function
+          
           const transact = await contract.methods.addStudentDetails(
             truncatedUniqueId,
             studentname,
@@ -176,22 +179,32 @@ export const Certificate = () => {
             certificate_response.data.hash
           ).send({ from: fromAddress })
             .on('error', (error) => {
+              setLoading(false)
+              setDatasaved(false)
+              setmailPrompt(false)
               if (error.message.includes("Certificate with this ID already exists")) {
                 alert("A certificate with this ID already exists. Please choose a different ID.");
+              setErrorMessage("A certificate with this ID already exists. Please choose a different ID.")
               }
               else if (error.message.includes("Duplicate enrollment number")) {
                 alert("A certificate with this enrollment number already exists. Please choose a different enrollment number.");
+                setErrorMessage("A certificate with this enrollment number already exists. Please choose a different enrollment number.")
               }
               else if (error.message.includes("Duplicate registration number")) {
                 alert("A certificate with this registration number already exists. Please choose a different registration number.");
+                setErrorMessage("A certificate with this registration number already exists. Please choose a different registration number.")
+
               }
               else {
                 // Handle other errors or display a generic error message
                 console.error(error);
                 alert("An error occurred while adding the student details.");
-            }
+                setErrorMessage("An error occurred while adding the student details.")
+              }
         })
         .then(async (transaction) => {
+          setLoading(false)
+          setDatasaved(true)
           console.log(transaction)
             // Transaction successful, handle the receipt
             if (transaction.transactionHash) {
@@ -219,7 +232,9 @@ export const Certificate = () => {
                 // Make POST request to the server endpoint
                  const response = await axios.post('/saveData', data);
                  console.log(response.data); // Log the response
-                 setDatasaved(true)
+                 setLoading(false)
+                 setDatasaved(false)
+                 setmailPrompt(true)
                  const requestData = {
                   pdfpath: certificate_response.data.pdfpath, // Replace with the actual path of the saved PDF file
                   senderEmail: enrollment,
@@ -227,13 +242,17 @@ export const Certificate = () => {
                 try {
                   const response = await axios.post('/send-email', requestData);
                   console.log('Email sent successfully:', response.data.message);
-                  window.location.href ='http://localhost:3000/student-certificate';
+                  window.location.href ='/student-certificate';
                 } catch (error) {
+                  setLoading(false)
+                  setmailPrompt(false)
                   console.error('Error sending email:', error.response.data.error);
                 }
                  
                  
               } catch (error) {
+                setLoading(false)
+                setErrorMessage("Error Some Thing Wrong")
                 console.error('Error:', error);
                 // Handle the error
                 // ...
@@ -242,18 +261,23 @@ export const Certificate = () => {
         });;
   
         } catch (error) {
+          setLoading(false)
+          setErrorMessage("Error generating PDF:")
           console.error('Error generating PDF:', error.response.data.error);
         }
         
     
       
       } else {
+        setLoading(false)
         console.error('Web3 provider not found. Make sure you have MetaMask installed.');
-        alert('Web3 provider not found. Make sure you have MetaMask installed.')
+        //alert('Web3 provider not found. Make sure you have MetaMask installed.')
+        setErrorMessage('Web3 provider not found. Make sure you have MetaMask installed.');
       }
     } catch (error) {
       console.error('Please Attach MetaMask Wallet and Log In:', error);
-      alert('Please Attach MetaMask Wallet and Log In')
+     // alert('Please Attach MetaMask Wallet and Log In')
+     setErrorMessage('Please Attach MetaMask Wallet and Log In')
       setLoading(false)
     }
   };
@@ -280,10 +304,6 @@ export const Certificate = () => {
     );
   }
 
-
-
-  
-
   if (Datasaved) {
     return (
       <div className="loading-container">
@@ -295,6 +315,11 @@ export const Certificate = () => {
 
   return (
     <div>
+    {errorMessage && (
+                <div className="alert alert-danger m-3 text-center" role="alert">
+                  {errorMessage}
+                </div>
+              )}
       {/* ------heading with some text code start */}
       <div className="preview">
         <h1 style={{ fontWeigt: "bolder" }}><b> PREVIEW STUDENT'S DEGREE</b>

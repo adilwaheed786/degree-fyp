@@ -106,7 +106,7 @@ if (loading) {
         />
          {error && (
         
-        <div className="alert alert-danger" role="alert">
+        <div className="alert alert-danger m-3 text-center" role="alert">
           {error}
         </div>
       )}

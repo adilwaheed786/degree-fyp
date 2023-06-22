@@ -30,7 +30,7 @@ export const App = () => {
         <BrowserRouter>
         <Header />
           <Routes>
-          
+{/*           
             <Route path="/admin" element={<AdminLogin />} />
             <Route path="/verify-auth" element={<PrivateRoute component={VerifyAuth}/>} />
             <Route path="/student-certificate" element={<PrivateRoute component={StudentCertificate} />} />
@@ -40,9 +40,18 @@ export const App = () => {
             <Route path="/unique_id" element={<UniqueeId />} />
             <Route path="/verify" element={<Verify />} />
             <Route path="/CertificatesList" element={<PrivateRoute component={CertificateList} />} />
-            <Route path="*" element={<Homepage />} />
+            <Route path="*" element={<Homepage />} /> */}
 
-     
+         <Route path="/admin" element={<AdminLogin />} />
+            <Route path="/verify-auth" element={<VerifyAuth/>} />
+            <Route path="/student-certificate" element={<StudentCertificate/>} />
+            <Route path="/confirm" element={<Certificate />} />
+            <Route path="/certificate_details" element={<Certificatedetails />} />
+            <Route path={"/certificate_details/:uniqueId"} element={<Certificatedetails />} />
+            <Route path="/unique_id" element={<UniqueeId />} />
+            <Route path="/verify" element={<Verify />} />
+            <Route path="/CertificatesList" element={< CertificateList />} />
+            <Route path="*" element={<Homepage />} />
 
        
         </Routes>
