@@ -76,14 +76,15 @@ const Body = () => {
         );
         setLoading(true); // Show the loading screen
         // Assuming you have already connected to the Ethereum network and instantiated the contract object
-        const Verified = await contract.methods.verifyDocumentHash(hash).call();
+        const Verified = await contract.methods.verifyDocumentHash(documenthash).call();
        // const totalCertificates = await contract.methods.getTotalCertificatesCount().call();
-        if(Verified){
+       console.log("First"+Verified)
+       if(Verified){
           setValid(true)
         }
         else{
           setNotValid(true)
-        }
+        } 
        console.log(Verified);
         setLoading(false); // Hide the loading screen
       } catch (error) {

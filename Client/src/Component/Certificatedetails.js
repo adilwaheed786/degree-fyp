@@ -35,7 +35,7 @@ export const Certificatedetails = () => {
           return;
         }
 
-        setMongodbData(blockchainData);
+       
         setLoading(true); // Show the loading screen
     // Connect to the Ganache network
     const provider = new Web3.providers.HttpProvider('http://localhost:7545');
@@ -54,14 +54,30 @@ export const Certificatedetails = () => {
     // Call the contract function to get the certificate data
     const result = await contract.methods
       .getCertificateDataByUUID(truncatedUniqueId)
-      .call();
-      setLoading(false); // Show the loading screen
-    setBlockchainData(result);
-    setSuccess("Degree Details Is Verified From BlockChain")
+      .call().then((result) => {
+        console.log("Success")
+        setLoading(false); // Hide the loading screen
+        setBlockchainData(result);
+        setMongodbData(blockchainData);
+        setSuccess("Degree Details Is Verified From BlockChain")
+      })
+      .catch((error) => {
+        console.error(error);
+        console.log("Eroor")
+        setLoading(false); // Hide the loading screen
+        setError('An error occurred. Please try again later.');
+        // Handle any error that occurred during the contract method call
+      });
+    
+    //   setLoading(false); // Show the loading screen
+    // setBlockchainData(result);
+    // setSuccess("Degree Details Is Verified From BlockChain")
   } catch (error) {
     console.log(error);
-    setLoading(false); 
+    setLoading(false);
+    //setBlockchainData(null);
     setError('An error occurred. Please try again later.');
+    
     //window.alert('Failed to retrieve blockchain data. Please try again.');
   }
 };
