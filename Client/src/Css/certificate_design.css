@@ -185,6 +185,16 @@ img {
   margin-top: 10px;
 }
 
+
+
+/* Media Query for Footer */
+@media (max-width: 900px) {
+  .footer p {
+    font-weight: bold;
+    margin-top: 10px;
+    font-size: small;
+  }
+}
 /* -------Footer code END */
 
 
