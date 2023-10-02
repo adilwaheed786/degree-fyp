@@ -154,22 +154,22 @@ const Body = () => {
               </button>
             </div>
             {loading && (     
-      <div className="alert alert-primary m-2" role="alert">
+      <div className="alert alert-primary m-3 text-center" role="alert">
       <div >Loading Please Wait...</div>
       </div>
       )}
       {error && (       
-        <div className="alert alert-danger m-2" role="alert">
+        <div className="alert alert-danger m-3 text-center" role="alert">
           {error}
         </div>
       )}
       {valid && (       
-        <div className="alert alert-success m-2" role="alert">
+        <div className="alert alert-success m-3 text-center" role="alert">
         <div >Degree  Is Verified From BlockChain</div>
         </div>
       )}
       {notvalid && (       
-        <div className="alert alert-danger m-2" role="alert">
+        <div className="alert alert-danger m-3 text-center" role="alert">
         <div >OOP! Degree  Is Not Verified From BlockChain</div>
         </div>
       )}

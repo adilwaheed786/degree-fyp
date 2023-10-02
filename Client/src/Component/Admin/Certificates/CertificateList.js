@@ -57,7 +57,7 @@ function CertificateList() {
       <h1 className="certificate-list-title">Certificates List</h1>
       {error && (
         
-      <div className="alert alert-danger" role="alert">
+      <div className="alert alert-danger m-3 text-center" role="alert">
         {error}
       </div>
     )}

@@ -107,7 +107,7 @@ export const AdminLogin = () => {
           <h1 className="heading">LOGIN</h1>
         </b>
         {error && (
-          <div className="alert alert-danger" role="alert">
+          <div className="alert alert-danger m-3 text-center" role="alert">
             {error}
           </div>
         )}
